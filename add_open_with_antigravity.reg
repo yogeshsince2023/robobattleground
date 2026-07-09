@@ -1,0 +1,25 @@
+Windows Registry Editor Version 5.00
+
+; Add "Open with Antigravity" context menu for Files
+[HKEY_CLASSES_ROOT\*\shell\Antigravity]
+@="Open with Antigravity"
+"Icon"="\"C:\\Users\\yoges\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe\""
+
+[HKEY_CLASSES_ROOT\*\shell\Antigravity\command]
+@="\"C:\\Users\\yoges\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe\" \"%1\""
+
+; Add "Open with Antigravity" context menu for Directory (right-clicking a folder)
+[HKEY_CLASSES_ROOT\Directory\shell\Antigravity]
+@="Open with Antigravity"
+"Icon"="\"C:\\Users\\yoges\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\Antigravity\command]
+@="\"C:\\Users\\yoges\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe\" \"%1\""
+
+; Add "Open with Antigravity" context menu for Directory Background (right-clicking inside an empty space in a folder)
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Antigravity]
+@="Open with Antigravity"
+"Icon"="\"C:\\Users\\yoges\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Antigravity\command]
+@="\"C:\\Users\\yoges\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe\" \"%V\""

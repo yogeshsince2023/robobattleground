@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #080808;
+  color: #F5F5F5;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #FF4500;
+  color: #080808;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+} 
+
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF4500;
+}
+
+/* Accessibility: focus-visible custom outline indicator */
+*:focus-visible {
+  outline: 2px solid #FF4500 !important;
+  outline-offset: 2px !important;
+}
+
+/* Form Validation: Input Error Shake Animation */
+@keyframes trbg-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.animate-trbg-shake {
+  animation: trbg-shake 0.3s ease-in-out;
+}
