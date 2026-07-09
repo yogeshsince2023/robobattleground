@@ -10,3 +10,8 @@ dist/
 .DS_Store
 .idea/
 .vscode/
+
+# Local agent helper logs and references
+.agents/
+add_open_with_antigravity.reg
+summary.md
