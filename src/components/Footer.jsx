@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.jpg";
 import { 
   IconBrandInstagram, 
   IconBrandYoutube, 
@@ -43,16 +44,7 @@ export default function Footer() {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             {/* Logo */}
-            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-              <path d="M6 6H26V20L20 26H12L6 20V6Z" fill="#F5F5F5" />
-              <rect x="9" y="10" width="4" height="4" fill="#080808" />
-              <rect x="19" y="10" width="4" height="4" fill="#080808" />
-              <rect x="10" y="11" width="2" height="2" fill="#FF4500" />
-              <rect x="20" y="11" width="2" height="2" fill="#FF4500" />
-              <line x1="12" y1="20" x2="12" y2="23" stroke="#080808" strokeWidth="2" />
-              <line x1="16" y1="20" x2="16" y2="23" stroke="#080808" strokeWidth="2" />
-              <line x1="20" y1="20" x2="20" y2="23" stroke="#080808" strokeWidth="2" />
-            </svg>
+            <img src={logo} alt="The Robo BG Logo" className="w-6 h-6 object-contain shrink-0" />
             <span className="font-display text-xl text-text-primary uppercase tracking-wider font-black">
               THE ROBO <span className="text-fire">BG</span>
             </span>

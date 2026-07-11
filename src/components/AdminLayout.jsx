@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.jsx";
+import logo from "../assets/logo.jpg";
 import { 
   IconLayoutDashboard, 
   IconCertificate, 
@@ -41,9 +42,7 @@ export default function AdminLayout() {
         {/* Top Branding Logo */}
         <div className="p-6 border-b border-[#1A1A1A] flex items-center gap-3">
           {/* Logo Skull */}
-          <svg viewBox="0 0 100 100" className="w-8 h-8 fill-current text-fire animate-pulse">
-            <path d="M50,10 C30,10 20,25 20,45 C20,55 24,65 30,70 L30,85 C30,88 33,90 36,90 L64,90 C67,90 70,88 70,85 L70,70 C76,65 80,55 80,45 C80,25 70,10 50,10 Z M38,40 C38,36 41,33 45,33 C49,33 52,36 52,40 C52,44 49,47 45,47 C41,47 38,44 38,40 Z M62,40 C62,36 65,33 69,33 C73,33 76,36 76,40 C76,44 73,47 69,47 C65,47 62,44 62,40 Z M38,62 L62,62 L62,66 L38,66 Z" />
-          </svg>
+          <img src={logo} alt="TRBG Logo" className="w-8 h-8 object-contain shrink-0" />
           <span className="font-display text-2xl uppercase tracking-wider text-text-primary">
             TRBG <span className="text-fire">ADMIN</span>
           </span>
@@ -88,9 +87,7 @@ export default function AdminLayout() {
       {/* MOBILE TOP BAR */}
       <header className="md:hidden bg-[#0A0A0A] border-b border-[#1A1A1A] py-3 px-4 flex justify-between items-center sticky top-0 z-40 select-none">
         <div className="flex items-center gap-2">
-          <svg viewBox="0 0 100 100" className="w-6 h-6 fill-current text-fire animate-pulse">
-            <path d="M50,10 C30,10 20,25 20,45 C20,55 24,65 30,70 L30,85 C30,88 33,90 36,90 L64,90 C67,90 70,88 70,85 L70,70 C76,65 80,55 80,45 C80,25 70,10 50,10 Z M38,40 C38,36 41,33 45,33 C49,33 52,36 52,40 C52,44 49,47 45,47 C41,47 38,44 38,40 Z M62,40 C62,36 65,33 69,33 C73,33 76,36 76,40 C76,44 73,47 69,47 C65,47 62,44 62,40 Z M38,62 L62,62 L62,66 L38,66 Z" />
-          </svg>
+          <img src={logo} alt="TRBG Logo" className="w-6 h-6 object-contain shrink-0" />
           <span className="font-display text-xl uppercase tracking-wider text-text-primary">
             TRBG <span className="text-fire">CONTROL</span>
           </span>

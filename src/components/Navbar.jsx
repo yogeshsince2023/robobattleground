@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "../assets/logo.jpg";
 
 const links = [
   { to: "/", label: "Home" },
@@ -13,16 +14,7 @@ const links = [
 ];
 
 const Logo = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-    <path d="M6 6H26V20L20 26H12L6 20V6Z" fill="#F5F5F5" />
-    <rect x="9" y="10" width="4" height="4" fill="#080808" />
-    <rect x="19" y="10" width="4" height="4" fill="#080808" />
-    <rect x="10" y="11" width="2" height="2" fill="#FF4500" />
-    <rect x="20" y="11" width="2" height="2" fill="#FF4500" />
-    <line x1="12" y1="20" x2="12" y2="23" stroke="#080808" strokeWidth="2" />
-    <line x1="16" y1="20" x2="16" y2="23" stroke="#080808" strokeWidth="2" />
-    <line x1="20" y1="20" x2="20" y2="23" stroke="#080808" strokeWidth="2" />
-  </svg>
+  <img src={logo} alt="The Robo Battle Ground Logo" className="w-8 h-8 object-contain shrink-0" />
 );
 
 export default function Navbar() {

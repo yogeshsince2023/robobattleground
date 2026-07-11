@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.jpg";
 import { useAuth } from "../../contexts/AuthContext.jsx";
 import { IconEye, IconEyeOff, IconLoader, IconAlertOctagon } from "@tabler/icons-react";
 import useDocumentMetadata from "../../hooks/useDocumentMetadata.js";
@@ -89,12 +90,7 @@ export default function AdminLogin() {
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2">
             {/* SVG Skull Logo */}
-            <svg 
-              viewBox="0 0 100 100" 
-              className="w-8 h-8 fill-current text-fire animate-pulse"
-            >
-              <path d="M50,10 C30,10 20,25 20,45 C20,55 24,65 30,70 L30,85 C30,88 33,90 36,90 L64,90 C67,90 70,88 70,85 L70,70 C76,65 80,55 80,45 C80,25 70,10 50,10 Z M38,40 C38,36 41,33 45,33 C49,33 52,36 52,40 C52,44 49,47 45,47 C41,47 38,44 38,40 Z M62,40 C62,36 65,33 69,33 C73,33 76,36 76,40 C76,44 73,47 69,47 C65,47 62,44 62,40 Z M38,62 L62,62 L62,66 L38,66 Z" />
-            </svg>
+            <img src={logo} alt="TRBG Logo" className="w-8 h-8 object-contain shrink-0" />
             <h1 className="font-display text-4xl uppercase tracking-wider text-text-primary leading-none">
               ADMIN ACCESS
             </h1>
