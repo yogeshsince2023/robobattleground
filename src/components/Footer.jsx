@@ -55,7 +55,7 @@ export default function Footer() {
           {/* Social icons */}
           <div className="flex items-center gap-4 pt-2">
             {[
-              { icon: <IconBrandInstagram size={20} />, href: "https://instagram.com" },
+              { icon: <IconBrandInstagram size={20} />, href: "https://www.instagram.com/the_robobattleground?igsh=b2V5NGdsZDhidTR0&utm_source=qr" },
               { icon: <IconBrandYoutube size={20} />, href: "https://youtube.com" },
               { icon: <IconBrandLinkedin size={20} />, href: "https://linkedin.com" },
               { icon: <IconBrandGithub size={20} />, href: "https://github.com" }
@@ -130,6 +130,7 @@ export default function Footer() {
       {/* BOTTOM BAR */}
       <div className="max-w-7xl mx-auto px-6 border-t border-[#111] py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] text-[#444] font-body">
         <span>© 2025 The Robo Battle Ground. All Rights Reserved.</span>
+        <span className="font-mono text-[11px] uppercase tracking-wider text-[#333] hover:text-[#555] transition-colors select-all">Udyam No: UDYAM-RJ-21-0091002</span>
         <span>Made with ⚡ in India</span>
       </div>
 
