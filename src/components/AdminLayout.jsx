@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import logo from "../assets/logo.jpg";
 import { 
@@ -15,7 +15,6 @@ import {
 export default function AdminLayout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleLogout = async () => {
     await logout();
@@ -31,7 +30,7 @@ export default function AdminLayout() {
     { label: "Messages", path: "/admin/messages", icon: IconMail }
   ];
 
-  const isLinkActive = (path) => location.pathname === path;
+
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#F5F5F5] flex flex-col md:flex-row font-body">
@@ -52,20 +51,21 @@ export default function AdminLayout() {
         <nav className="flex-grow p-4 space-y-1.5">
           {navItems.map((item, idx) => {
             const Icon = item.icon;
-            const active = isLinkActive(item.path);
             return (
-              <Link
+              <NavLink
                 key={idx}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-150 border-l-[3px] ${
-                  active 
-                    ? "bg-fire/10 border-fire text-fire" 
-                    : "border-transparent text-ash hover:text-text-primary hover:bg-[#111111]"
-                }`}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-150 border-l-[3px] ${
+                    isActive 
+                      ? "bg-fire/10 border-fire text-fire" 
+                      : "border-transparent text-ash hover:text-text-primary hover:bg-[#111111]"
+                  }`
+                }
               >
                 <Icon size={18} />
                 <span>{item.label}</span>
-              </Link>
+              </NavLink>
             );
           })}
         </nav>
@@ -95,13 +95,15 @@ export default function AdminLayout() {
         
         {/* Mobile Header Icons: Messages & Logout */}
         <div className="flex items-center gap-3">
-          <Link 
+          <NavLink 
             to="/admin/messages" 
-            className={`p-2 transition-colors ${isLinkActive("/admin/messages") ? "text-fire" : "text-ash hover:text-text-primary"}`}
+            className={({ isActive }) =>
+              `p-2 transition-colors ${isActive ? "text-fire" : "text-ash hover:text-text-primary"}`
+            }
             aria-label="Messages"
           >
             <IconMail size={20} />
-          </Link>
+          </NavLink>
           <button 
             onClick={handleLogout}
             className="p-2 text-fire hover:bg-fire/10 transition-colors"
@@ -121,20 +123,21 @@ export default function AdminLayout() {
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0A0A0A] border-t border-[#1A1A1A] py-2 px-1 flex justify-around items-center z-40 select-none">
         {navItems.slice(0, 5).map((item, idx) => {
           const Icon = item.icon;
-          const active = isLinkActive(item.path);
           return (
-            <Link
+            <NavLink
               key={idx}
               to={item.path}
-              className={`flex flex-col items-center justify-center flex-1 py-1 transition-all duration-100 ${
-                active ? "text-fire" : "text-ash"
-              }`}
+              className={({ isActive }) =>
+                `flex flex-col items-center justify-center flex-1 py-1 transition-all duration-100 ${
+                  isActive ? "text-fire" : "text-ash"
+                }`
+              }
             >
               <Icon size={20} />
               <span className="text-[9px] uppercase tracking-wider mt-1 font-semibold truncate max-w-full">
                 {item.label}
               </span>
-            </Link>
+            </NavLink>
           );
         })}
       </nav>

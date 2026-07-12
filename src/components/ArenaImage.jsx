@@ -6,10 +6,12 @@ export default function ArenaImage({ src, alt, className = "", overlay = true })
 
   if (hasError || !src) {
     return (
-      <div className={`bg-[#111111] flex flex-col items-center justify-center gap-2 p-4 text-center select-none ${className}`}>
-        <IconPhoto size={36} className="text-[#333333]" />
-        <span className="text-xs uppercase tracking-wider text-[#444444] font-semibold">
-          Image coming soon
+      <div 
+        className={`bg-[#111111] min-h-[200px] flex flex-col items-center justify-center gap-2 p-4 text-center select-none ${className}`}
+      >
+        <IconPhoto size={48} className="text-[#333333]" />
+        <span className="Inter text-[13px] uppercase tracking-wider text-[#444444] font-semibold">
+          Photo coming soon
         </span>
       </div>
     );

@@ -75,15 +75,15 @@ export default function Contact() {
                 <div className="space-y-6">
                   <div className="flex items-center gap-3">
                     <IconMail className="text-fire shrink-0" size={20} />
-                    <a href="mailto:contact@therobobattleground.in" className="text-ash hover:text-text-primary transition-colors font-mono text-sm">
-                      contact@therobobattleground.in
+                    <a href="mailto:therobobattleground@gmail.com" className="text-ash hover:text-text-primary transition-colors font-mono text-sm">
+                      therobobattleground@gmail.com
                     </a>
                   </div>
 
                   <div className="flex items-center gap-3">
                     <IconPhone className="text-fire shrink-0" size={20} />
                     <span className="text-ash font-mono text-sm">
-                      +91 99999 99999
+                      +91 85298 96177
                     </span>
                   </div>
 

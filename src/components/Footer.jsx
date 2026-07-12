@@ -110,8 +110,8 @@ export default function Footer() {
           <div className="space-y-3 font-body text-[13px] text-[#555]">
             <div className="flex items-center gap-2">
               <IconMail size={16} className="text-[#555]" />
-              <a href="mailto:contact@therobobattleground.in" className="hover:text-text-primary transition-colors font-mono">
-                contact@therobobattleground.in
+              <a href="mailto:therobobattleground@gmail.com" className="hover:text-text-primary transition-colors font-mono">
+                therobobattleground@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-2">

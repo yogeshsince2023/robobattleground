@@ -109,7 +109,7 @@ export default function AdminLogin() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="e.g. operator@therobobattleground.in"
+              placeholder="e.g. operator@gmail.com"
               required
               disabled={loading || lockoutTime > 0}
               className="w-full bg-[#080808] border border-[#1A1A1A] p-4 text-text-primary outline-none focus:border-fire rounded-none text-sm transition-colors"

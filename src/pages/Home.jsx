@@ -428,12 +428,12 @@ export default function Home() {
 
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
               {[
-                { img: images.robots.bot1, h: "h-80" },
-                { img: images.arena.zoneA, h: "h-64" },
-                { img: images.robots.bot2, h: "h-96" },
-                { img: images.arena.zoneB, h: "h-72" },
-                { img: images.robots.bot3, h: "h-64" },
-                { img: images.arena.zoneC, h: "h-80" }
+                { img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80&fit=crop", h: "h-80" },
+                { img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80&fit=crop", h: "h-64" },
+                { img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80&fit=crop", h: "h-96" },
+                { img: "https://images.unsplash.com/photo-1561144257-e32e8506e2b6?w=600&q=80&fit=crop", h: "h-72" },
+                { img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80&fit=crop", h: "h-64" },
+                { img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80&fit=crop", h: "h-80" }
               ].map((item, i) => (
                 <div 
                   key={i} 

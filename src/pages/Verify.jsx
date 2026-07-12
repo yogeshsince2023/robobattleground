@@ -351,8 +351,8 @@ export default function Verify() {
                   </p>
                   <p className="text-ash text-sm leading-relaxed">
                     If you believe this is an error or have credentials issued manually, contact our command center team at{" "}
-                    <a href="mailto:verify@therobobattleground.in" className="text-fire font-semibold hover:underline">
-                      verify@therobobattleground.in
+                    <a href="mailto:therobobattleground@gmail.com" className="text-fire font-semibold hover:underline">
+                      therobobattleground@gmail.com
                     </a>.
                   </p>
                   <button
