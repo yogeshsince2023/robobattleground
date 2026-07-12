@@ -2,8 +2,8 @@ export const images = {
   arena: {
     heroBg: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-1_tzdbfb.jpg",
     zoneA:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-2_tdhzkf.jpg",
-    zoneB:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-3_ixbrm7.jpg",
-    zoneC:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-4_kbcpjf.jpg",
+    zoneB:  "",
+    zoneC:  "",
   },
   internship: {
     interns1: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80&fit=crop",

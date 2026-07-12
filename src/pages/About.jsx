@@ -13,10 +13,10 @@ const timelineData = [
 ];
 
 const crewData = [
-  { name: "Yogesh", initials: "Y", role: "Founder & Lead Engineer", bio: "Technoxian veteran. Hardcore drivetrain and mechanical systems architect.", photo: images.team.member1 },
-  { name: "Priya Nair", initials: "P", role: "Head of Embedded Systems", bio: "ESC firmware developer and RF telemetry specialist. Ex-industrial dev.", photo: images.team.member2 },
-  { name: "Rajat Patel", initials: "R", role: "Mechanical Lead", bio: "CAD wizard and FEA safety inspector. Specializes in armor cutouts.", photo: images.team.member3 },
-  { name: "Sneha Rao", initials: "S", role: "Event Operations", bio: "Arena coordinator and pit hazard marshal. Oversees match logs.", photo: images.team.member4 }
+  { name: "Yogesh", initials: "Y", role: "Founder & Lead Engineer", bio: "Technoxian veteran. Hardcore drivetrain and mechanical systems architect." },
+  { name: "Priya Nair", initials: "P", role: "Head of Embedded Systems", bio: "ESC firmware developer and RF telemetry specialist. Ex-industrial dev." },
+  { name: "Rajat Patel", initials: "R", role: "Mechanical Lead", bio: "CAD wizard and FEA safety inspector. Specializes in armor cutouts." },
+  { name: "Sneha Rao", initials: "S", role: "Event Operations", bio: "Arena coordinator and pit hazard marshal. Oversees match logs." }
 ];
 
 function TeamMemberCard({ member }) {
