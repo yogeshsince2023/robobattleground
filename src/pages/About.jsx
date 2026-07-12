@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import SectionDivider from "../components/SectionDivider.jsx";
 import PageWrapper from "../components/PageWrapper.jsx";
 import useDocumentMetadata from "../hooks/useDocumentMetadata.js";
-import { images } from "../assets/images/index.js";
 
 const timelineData = [
   { year: "2022", text: "Founded in Jaipur, Rajasthan. A small team with big bots and bigger ambitions." },
@@ -12,47 +11,7 @@ const timelineData = [
   { year: "2025", text: "Certificate verification platform launched. Expanded to 3 arena zones." }
 ];
 
-const crewData = [
-  { name: "Yogesh", initials: "Y", role: "Founder & Lead Engineer", bio: "Technoxian veteran. Hardcore drivetrain and mechanical systems architect." },
-  { name: "Priya Nair", initials: "P", role: "Head of Embedded Systems", bio: "ESC firmware developer and RF telemetry specialist. Ex-industrial dev." },
-  { name: "Rajat Patel", initials: "R", role: "Mechanical Lead", bio: "CAD wizard and FEA safety inspector. Specializes in armor cutouts." },
-  { name: "Sneha Rao", initials: "S", role: "Event Operations", bio: "Arena coordinator and pit hazard marshal. Oversees match logs." }
-];
 
-function TeamMemberCard({ member }) {
-  const [imgError, setImgError] = useState(false);
-
-  return (
-    <div className="bg-[#111111] border border-plate p-8 flex flex-col items-center text-center hover:border-fire transition-colors duration-300 rounded-none group">
-      {/* Photo with fallback */}
-      {!imgError && member.photo ? (
-        <img
-          src={member.photo}
-          alt={member.name}
-          onError={() => setImgError(true)}
-          loading="lazy"
-          className="w-16 h-16 rounded-full object-cover mb-6 border border-fire/30 shrink-0"
-        />
-      ) : (
-        <div className="w-16 h-16 bg-fire/15 border border-fire text-fire font-display text-2xl uppercase flex items-center justify-center mb-6 shrink-0 rounded-full">
-          {member.initials}
-        </div>
-      )}
-      
-      <h3 className="font-display text-2xl uppercase tracking-wider text-text-primary mb-1">
-        {member.name}
-      </h3>
-      
-      <span className="text-fire font-display text-sm tracking-wider uppercase block mb-4">
-        {member.role}
-      </span>
-
-      <p className="text-ash text-xs leading-relaxed font-light">
-        {member.bio}
-      </p>
-    </div>
-  );
-}
 
 export default function About() {
   useDocumentMetadata("About Us — The Robo Battle Ground", "Read the combat robotics crew mission and timeline landmarks of The Robo Battle Ground platform. Driven by Yogesh and technical fight marshals.");
@@ -114,28 +73,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* SECTION 2 — TEAM (angled crew) */}
-        <section 
-          className="bg-steel py-28 px-6 relative"
-          style={{
-            clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)"
-          }}
-        >
-          <div className="max-w-7xl mx-auto py-6">
-            
-            <div className="text-center mb-16">
-              <span className="text-spark font-display text-xl uppercase tracking-widest block mb-2">MARSHALS</span>
-              <h2 className="font-display text-[clamp(28px,5vw,52px)] font-black uppercase text-text-primary">THE CREW</h2>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {crewData.map((member, i) => (
-                <TeamMemberCard key={i} member={member} />
-              ))}
-            </div>
-
-          </div>
-        </section>
 
         {/* SECTION 3 — VISION STATEMENT */}
         <section className="bg-forge py-28 px-6 text-center border-t border-plate">
