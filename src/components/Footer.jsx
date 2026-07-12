@@ -94,7 +94,12 @@ export default function Footer() {
 
       {/* BOTTOM BAR */}
       <div className="max-w-7xl mx-auto px-6 border-t border-[#111] py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] text-[#444] font-body">
-        <span>© 2025 The Robo Battle Ground. All Rights Reserved.</span>
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-left">
+          <span>© 2025 The Robo Battle Ground. All Rights Reserved.</span>
+          <Link to="/terms" className="hover:text-text-primary transition-colors underline decoration-fire/40 underline-offset-4">
+            Terms & Conditions
+          </Link>
+        </div>
         <span className="font-mono text-[11px] uppercase tracking-wider text-[#333] hover:text-[#555] transition-colors select-all">Udyam No: UDYAM-RJ-21-0091002</span>
         <span>Made with ⚡ in India</span>
       </div>

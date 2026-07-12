@@ -16,6 +16,7 @@ import Internships from "./pages/Internships.jsx";
 import Verify from "./pages/Verify.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
+import Terms from "./pages/Terms.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AdminLogin from "./pages/admin/AdminLogin.jsx";
 import Dashboard from "./pages/admin/Dashboard.jsx";
@@ -49,6 +50,7 @@ export default function App() {
             <Route path="/verify" element={<Verify />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/terms" element={<Terms />} />
           </Route>
 
           {/* Admin Restricted Portal */}

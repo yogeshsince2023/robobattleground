@@ -1,6 +1,6 @@
 export const images = {
   arena: {
-    heroBg: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-1_tzdbfb.jpg",
+    heroBg: "https://res.cloudinary.com/rshcmlou/image/upload/v1783877700/Jul_12_2026_10_20_20_PM_hpzpw0.png",
     zoneA:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-2_tdhzkf.jpg",
     zoneB:  "",
     zoneC:  "",
