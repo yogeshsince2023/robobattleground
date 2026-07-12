@@ -1,9 +1,9 @@
 export const images = {
   arena: {
-    heroBg: new URL('../../gallery/arena-1.jpeg', import.meta.url).href,
-    zoneA:  new URL('../../gallery/arena-2.jpeg', import.meta.url).href,
-    zoneB:  new URL('../../gallery/arena-3.jpeg', import.meta.url).href,
-    zoneC:  new URL('../../gallery/arena-4.jpeg', import.meta.url).href,
+    heroBg: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-1_tzdbfb.jpg",
+    zoneA:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-2_tdhzkf.jpg",
+    zoneB:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-3_ixbrm7.jpg",
+    zoneC:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-4_kbcpjf.jpg",
   },
   internship: {
     interns1: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80&fit=crop",
@@ -21,11 +21,11 @@ export const images = {
     bot3: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80&fit=crop",
   },
   gallery: {
-    photo1: new URL('../../gallery/arena-2.jpeg', import.meta.url).href,
-    photo2: new URL('../../gallery/arena-3.jpeg', import.meta.url).href,
-    photo3: new URL('../../gallery/arena-4.jpeg', import.meta.url).href,
-    photo4: new URL('../../gallery/arena-5.jpeg', import.meta.url).href,
-    photo5: new URL('../../gallery/arena-6.jpeg', import.meta.url).href,
-    photo6: new URL('../../gallery/arena-7.jpeg', import.meta.url).href,
+    photo1: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-2_tdhzkf.jpg",
+    photo2: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-3_ixbrm7.jpg",
+    photo3: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-4_kbcpjf.jpg",
+    photo4: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-5_wbfv1d.jpg",
+    photo5: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871925/arena-6_jlixgo.jpg",
+    photo6: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-7_ftyho3.jpg",
   }
 };
