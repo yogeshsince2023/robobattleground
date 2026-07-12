@@ -1,9 +1,9 @@
 export const images = {
   arena: {
-    heroBg: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80&fit=crop",
-    zoneA:  "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80&fit=crop",
-    zoneB:  "https://images.unsplash.com/photo-1561144257-e32e8506e2b6?w=800&q=80&fit=crop",
-    zoneC:  "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&fit=crop",
+    heroBg: new URL('../../gallery/arena-1.jpeg', import.meta.url).href,
+    zoneA:  new URL('../../gallery/arena-2.jpeg', import.meta.url).href,
+    zoneB:  new URL('../../gallery/arena-3.jpeg', import.meta.url).href,
+    zoneC:  new URL('../../gallery/arena-4.jpeg', import.meta.url).href,
   },
   internship: {
     interns1: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80&fit=crop",
@@ -19,5 +19,13 @@ export const images = {
     bot1: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80&fit=crop",
     bot2: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80&fit=crop",
     bot3: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80&fit=crop",
+  },
+  gallery: {
+    photo1: new URL('../../gallery/arena-2.jpeg', import.meta.url).href,
+    photo2: new URL('../../gallery/arena-3.jpeg', import.meta.url).href,
+    photo3: new URL('../../gallery/arena-4.jpeg', import.meta.url).href,
+    photo4: new URL('../../gallery/arena-5.jpeg', import.meta.url).href,
+    photo5: new URL('../../gallery/arena-6.jpeg', import.meta.url).href,
+    photo6: new URL('../../gallery/arena-7.jpeg', import.meta.url).href,
   }
 };

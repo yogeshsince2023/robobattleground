@@ -3,9 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import { 
   IconBrandInstagram, 
-  IconBrandYoutube, 
-  IconBrandLinkedin, 
-  IconBrandGithub, 
   IconMail, 
   IconMapPin, 
   IconClock 
@@ -54,22 +51,15 @@ export default function Footer() {
           </p>
           {/* Social icons */}
           <div className="flex items-center gap-4 pt-2">
-            {[
-              { icon: <IconBrandInstagram size={20} />, href: "https://www.instagram.com/the_robobattleground?igsh=b2V5NGdsZDhidTR0&utm_source=qr" },
-              { icon: <IconBrandYoutube size={20} />, href: "https://youtube.com" },
-              { icon: <IconBrandLinkedin size={20} />, href: "https://linkedin.com" },
-              { icon: <IconBrandGithub size={20} />, href: "https://github.com" }
-            ].map((social, i) => (
-              <a 
-                key={i} 
-                href={social.href} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-[#555] hover:text-fire transition-colors"
-              >
-                {social.icon}
-              </a>
-            ))}
+            <a 
+              href="https://www.instagram.com/the_robobattleground?igsh=b2V5NGdsZDhidTR0&utm_source=qr" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="text-[#555] hover:text-fire transition-colors"
+              aria-label="Instagram"
+            >
+              <IconBrandInstagram size={20} />
+            </a>
           </div>
         </div>
 
