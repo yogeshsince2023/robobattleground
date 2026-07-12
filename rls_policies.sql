@@ -49,3 +49,25 @@ create policy "Allow public read visible access" on gallery
 drop policy if exists "Allow admin access" on gallery;
 create policy "Allow admin access" on gallery
   for all to authenticated using (true) with check (true);
+
+-- MACHINING ENQUIRIES POLICIES
+alter table machining_enquiries enable row level security;
+
+drop policy if exists "Allow public insert access" on machining_enquiries;
+create policy "Allow public insert access" on machining_enquiries
+  for insert with check (true);
+
+drop policy if exists "Allow admin access" on machining_enquiries;
+create policy "Allow admin access" on machining_enquiries
+  for all to authenticated using (true) with check (true);
+
+-- PROJECTS POLICIES
+alter table projects enable row level security;
+
+drop policy if exists "Allow public read published" on projects;
+create policy "Allow public read published" on projects
+  for select using (is_published = true);
+
+drop policy if exists "Allow admin access" on projects;
+create policy "Allow admin access" on projects
+  for all to authenticated using (true) with check (true);

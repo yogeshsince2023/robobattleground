@@ -7,7 +7,7 @@ import useDocumentMetadata from "../../hooks/useDocumentMetadata.js";
 export default function Dashboard() {
   useDocumentMetadata("Command Center — TRBG", "Administrative control center.");
 
-  const [stats, setStats] = useState({ certsCount: 0, enquiriesCount: 0, appsCount: 0, msgsCount: 0 });
+  const [stats, setStats] = useState({ certsCount: 0, enquiriesCount: 0, appsCount: 0, msgsCount: 0, machiningCount: 0, projectsCount: 0 });
   const [enquiries, setEnquiries] = useState([]);
   const [applications, setApplications] = useState([]);
   
@@ -73,6 +73,8 @@ export default function Dashboard() {
   const statCards = [
     { label: "Certificates Issued", count: stats.certsCount, path: "/admin/certificates" },
     { label: "New Arena Enquiries", count: stats.enquiriesCount, path: "/admin/enquiries", isNew: true },
+    { label: "New Machining Enquiries", count: stats.machiningCount, path: "/admin/machining", isNew: true },
+    { label: "Published Projects", count: stats.projectsCount, path: "/admin/projects" },
     { label: "New Internship Applications", count: stats.appsCount, path: "/admin/applications", isNew: true },
     { label: "Unread Messages", count: stats.msgsCount, path: "/admin/messages", isNew: true }
   ];

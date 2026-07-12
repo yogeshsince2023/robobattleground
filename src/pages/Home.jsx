@@ -13,6 +13,7 @@ import PageWrapper from "../components/PageWrapper.jsx";
 import useDocumentMetadata from "../hooks/useDocumentMetadata.js";
 import { images } from "../assets/images/index.js";
 import ArenaImage from "../components/ArenaImage.jsx";
+import { getFeaturedProjects } from "../lib/db.js";
 
 // Custom hook to trigger a count-up transition
 function useCountUp(target, duration = 2000, isActive = false) {
@@ -74,6 +75,11 @@ export default function Home() {
       observer.observe(statsRef.current);
     }
     return () => observer.disconnect();
+  }, []);
+
+  const [featuredProjects, setFeaturedProjects] = useState([]);
+  useEffect(() => {
+    getFeaturedProjects().then(({ data }) => setFeaturedProjects(data || []));
   }, []);
 
   useDocumentMetadata("The Robo Battle Ground — India's Premier Combat Robotics Arena", "Enter India's ultimate combat robotics arena. Book live battle slots, apply for certified engineering internships, and verify builder credentials.");
@@ -376,6 +382,63 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* FEATURED PROJECTS SECTION — hidden if no featured projects */}
+        {featuredProjects.length > 0 && (
+          <section className="bg-forge py-24 px-6 border-b border-plate">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-16">
+                <span className="text-spark font-display text-xl uppercase tracking-widest block mb-2">// From The Builders</span>
+                <h2 className="font-display text-[clamp(28px,5vw,52px)] font-black uppercase text-text-primary">
+                  FEATURED PROJECTS
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                {featuredProjects.map((project) => (
+                  <Link
+                    key={project.id}
+                    to={`/projects/${project.slug}`}
+                    className="bg-[#111111] border border-[#1A1A1A] overflow-hidden hover:border-fire hover:-translate-y-1 transition-all duration-300 cursor-pointer group block"
+                  >
+                    <div className="relative h-[200px] bg-[#1A1A1A] overflow-hidden">
+                      {project.cover_image_url ? (
+                        <img src={project.cover_image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <IconRobot size={48} className="text-[#333]" />
+                        </div>
+                      )}
+                      {project.is_featured && (
+                        <span className="absolute top-3 right-3 bg-spark text-[#080808] text-[10px] uppercase font-body font-semibold px-2 py-1 tracking-wider">
+                          ★ FEATURED
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-display text-[22px] text-text-primary uppercase tracking-wide group-hover:text-fire transition-colors">{project.title}</h3>
+                      {(project.team_name || project.college) && (
+                        <p className="text-[#555] text-[12px] mt-1">
+                          {[project.team_name && `by ${project.team_name}`, project.college].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
+                      <p className="text-ash text-[13px] leading-relaxed mt-2" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                        {project.description}
+                      </p>
+                      {project.result && (
+                        <span className="text-spark text-[12px] font-semibold mt-2 block">🏆 {project.result}</span>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <div className="text-center">
+                <Link to="/projects" className="text-fire text-[14px] font-semibold tracking-wider hover:underline uppercase">
+                  VIEW ALL PROJECTS →
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* BATTLE GALLERY SECTION */}
         <section className="bg-forge py-24 px-6 border-b border-plate">

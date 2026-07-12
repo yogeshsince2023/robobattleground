@@ -9,7 +9,9 @@ import {
   IconSwords, 
   IconUsers, 
   IconMail, 
-  IconLogout 
+  IconLogout,
+  IconTool,
+  IconPresentation 
 } from "@tabler/icons-react";
 
 export default function AdminLayout() {
@@ -26,6 +28,8 @@ export default function AdminLayout() {
     { label: "Certificates", path: "/admin/certificates", icon: IconCertificate },
     { label: "Gallery", path: "/admin/gallery", icon: IconPhoto },
     { label: "Enquiries", path: "/admin/enquiries", icon: IconSwords },
+    { label: "Machining", path: "/admin/machining", icon: IconTool },
+    { label: "Projects", path: "/admin/projects", icon: IconPresentation },
     { label: "Applications", path: "/admin/applications", icon: IconUsers },
     { label: "Messages", path: "/admin/messages", icon: IconMail }
   ];

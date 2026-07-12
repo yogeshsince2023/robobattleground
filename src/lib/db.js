@@ -33,6 +33,13 @@ export const submitContactMessage = async (formData) => {
   return { data, error };
 };
 
+export const submitMachiningEnquiry = async (formData) => {
+  const { data, error } = await supabase
+    .from('machining_enquiries')
+    .insert([formData]);
+  return { data, error };
+};
+
 export const getGallery = async (category = null) => {
   let query = supabase
     .from('gallery')
@@ -52,14 +59,18 @@ export const getAdminStats = async () => {
   const enquiries = supabase.from('arena_enquiries').select('*', { count: 'exact', head: true }).eq('status', 'new');
   const apps = supabase.from('internship_applications').select('*', { count: 'exact', head: true }).eq('status', 'new');
   const msgs = supabase.from('contact_messages').select('*', { count: 'exact', head: true }).eq('status', 'unread');
+  const machining = supabase.from('machining_enquiries').select('*', { count: 'exact', head: true }).eq('status', 'new');
+  const projects = supabase.from('projects').select('*', { count: 'exact', head: true }).eq('is_published', true);
   
-  const [certsRes, enquiriesRes, appsRes, msgsRes] = await Promise.all([certs, enquiries, apps, msgs]);
+  const [certsRes, enquiriesRes, appsRes, msgsRes, machiningRes, projectsRes] = await Promise.all([certs, enquiries, apps, msgs, machining, projects]);
   return {
     certsCount: certsRes.count || 0,
     enquiriesCount: enquiriesRes.count || 0,
     appsCount: appsRes.count || 0,
     msgsCount: msgsRes.count || 0,
-    error: certsRes.error || enquiriesRes.error || appsRes.error || msgsRes.error
+    machiningCount: machiningRes.count || 0,
+    projectsCount: projectsRes.count || 0,
+    error: certsRes.error || enquiriesRes.error || appsRes.error || msgsRes.error || machiningRes.error || projectsRes.error
   };
 };
 
@@ -192,5 +203,92 @@ export const deleteGalleryItem = async (id) => {
     .from('gallery')
     .delete()
     .eq('id', id);
+  return { data, error };
+};
+
+export const getMachiningEnquiries = async () => {
+  const { data, error } = await supabase
+    .from('machining_enquiries')
+    .select('*')
+    .order('created_at', { ascending: false });
+  return { data, error };
+};
+
+export const updateMachiningEnquiry = async (id, updates) => {
+  const { data, error } = await supabase
+    .from('machining_enquiries')
+    .update(updates)
+    .eq('id', id)
+    .select()
+    .single();
+  return { data, error };
+};
+
+// --- PROJECTS ---
+
+export const getProjects = async (category = null) => {
+  let query = supabase
+    .from('projects')
+    .select('*')
+    .eq('is_published', true)
+    .order('sort_order', { ascending: true });
+  if (category) query = query.eq('category', category);
+  const { data, error } = await query;
+  return { data, error };
+};
+
+export const getFeaturedProjects = async () => {
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('is_published', true)
+    .eq('is_featured', true)
+    .order('sort_order', { ascending: true })
+    .limit(3);
+  return { data, error };
+};
+
+export const getProjectBySlug = async (slug) => {
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('slug', slug)
+    .eq('is_published', true)
+    .single();
+  return { data, error };
+};
+
+export const getAllProjects = async () => {
+  const { data, error } = await supabase
+    .from('projects')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  return { data, error };
+};
+
+export const upsertProject = async (project) => {
+  const { data, error } = await supabase
+    .from('projects')
+    .upsert(project, { onConflict: 'id' })
+    .select()
+    .single();
+  return { data, error };
+};
+
+export const deleteProject = async (id) => {
+  const { data, error } = await supabase
+    .from('projects')
+    .delete()
+    .eq('id', id);
+  return { data, error };
+};
+
+export const toggleProjectStatus = async (id, field, value) => {
+  const { data, error } = await supabase
+    .from('projects')
+    .update({ [field]: value })
+    .eq('id', id)
+    .select()
+    .single();
   return { data, error };
 };

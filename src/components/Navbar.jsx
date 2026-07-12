@@ -7,6 +7,8 @@ import logo from "../assets/logo.jpg";
 const links = [
   { to: "/", label: "Home" },
   { to: "/arena", label: "Arena" },
+  { to: "/machining", label: "Machining" },
+  { to: "/projects", label: "Projects" },
   { to: "/internships", label: "Internships" },
   { to: "/verify", label: "Verify Certificate" },
   { to: "/about", label: "About" },

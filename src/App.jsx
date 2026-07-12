@@ -12,6 +12,9 @@ import { AuthProvider } from "./contexts/AuthContext.jsx";
 
 import Home from "./pages/Home.jsx";
 import Arena from "./pages/Arena.jsx";
+import Machining from "./pages/Machining.jsx";
+import Projects from "./pages/Projects.jsx";
+import ProjectDetail from "./pages/ProjectDetail.jsx";
 import Internships from "./pages/Internships.jsx";
 import Verify from "./pages/Verify.jsx";
 import About from "./pages/About.jsx";
@@ -25,6 +28,8 @@ import GalleryAdmin from "./pages/admin/GalleryAdmin.jsx";
 import EnquiriesAdmin from "./pages/admin/EnquiriesAdmin.jsx";
 import ApplicationsAdmin from "./pages/admin/ApplicationsAdmin.jsx";
 import MessagesAdmin from "./pages/admin/MessagesAdmin.jsx";
+import MachiningAdmin from "./pages/admin/MachiningAdmin.jsx";
+import ProjectsAdmin from "./pages/admin/ProjectsAdmin.jsx";
 
 export default function App() {
   return (
@@ -46,6 +51,9 @@ export default function App() {
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/arena" element={<Arena />} />
+            <Route path="/machining" element={<Machining />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/internships" element={<Internships />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/about" element={<About />} />
@@ -70,6 +78,8 @@ export default function App() {
             <Route path="gallery" element={<GalleryAdmin />} />
             <Route path="enquiries" element={<EnquiriesAdmin />} />
             <Route path="applications" element={<ApplicationsAdmin />} />
+            <Route path="machining" element={<MachiningAdmin />} />
+            <Route path="projects" element={<ProjectsAdmin />} />
             <Route path="messages" element={<MessagesAdmin />} />
           </Route>
 

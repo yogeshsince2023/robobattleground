@@ -65,3 +65,43 @@ create table if not exists gallery (
   is_visible boolean default true,
   created_at timestamp default now()
 );
+
+-- MACHINING ENQUIRIES TABLE
+create table if not exists machining_enquiries (
+  id uuid default gen_random_uuid() primary key,
+  full_name text not null,
+  email text not null,
+  phone text not null,
+  team_name text,
+  services text[],
+  material text,
+  weight_class text,
+  description text,
+  urgency text,
+  status text default 'new',
+  notes text,
+  created_at timestamp default now()
+);
+
+-- PROJECTS TABLE
+create table if not exists projects (
+  id uuid default gen_random_uuid() primary key,
+  title text not null,
+  slug text unique not null,
+  category text not null,
+  description text not null,
+  full_content text,
+  team_name text,
+  college text,
+  weight_class text,
+  competition text,
+  result text,
+  cover_image_url text,
+  gallery_urls text[],
+  tags text[],
+  is_featured boolean default false,
+  is_published boolean default false,
+  sort_order integer default 0,
+  created_at timestamp default now(),
+  updated_at timestamp default now()
+);
