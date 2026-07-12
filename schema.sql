@@ -1,5 +1,5 @@
 -- CERTIFICATES TABLE
-create table certificates (
+create table if not exists certificates (
   id text primary key,
   name text not null,
   track text not null,
@@ -11,7 +11,7 @@ create table certificates (
 );
 
 -- ARENA ENQUIRIES TABLE  
-create table arena_enquiries (
+create table if not exists arena_enquiries (
   id uuid default gen_random_uuid() primary key,
   full_name text not null,
   email text not null,
@@ -27,7 +27,7 @@ create table arena_enquiries (
 );
 
 -- INTERNSHIP APPLICATIONS TABLE
-create table internship_applications (
+create table if not exists internship_applications (
   id uuid default gen_random_uuid() primary key,
   full_name text not null,
   email text not null,
@@ -44,7 +44,7 @@ create table internship_applications (
 );
 
 -- CONTACT MESSAGES TABLE
-create table contact_messages (
+create table if not exists contact_messages (
   id uuid default gen_random_uuid() primary key,
   name text not null,
   email text not null,
@@ -55,7 +55,7 @@ create table contact_messages (
 );
 
 -- GALLERY TABLE
-create table gallery (
+create table if not exists gallery (
   id uuid default gen_random_uuid() primary key,
   title text,
   category text,
