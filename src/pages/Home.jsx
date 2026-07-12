@@ -92,14 +92,27 @@ export default function Home() {
       <div className="bg-forge text-text-primary min-h-screen overflow-hidden font-body">
         
         {/* Hero Section */}
-        <section 
-          className="relative h-screen min-h-[600px] w-full bg-[#080808] overflow-hidden flex items-center justify-center"
-          style={{
-            backgroundImage: `url(${images.arena.heroBg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-          }}
-        >
+        <section className="relative h-screen min-h-[600px] w-full bg-[#080808] overflow-hidden flex items-center justify-center">
+          {/* Layer 1: Background Image with slow continuous zoom/pan animation */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: `url(${images.arena.heroBg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.35 // Dimmed to ensure high text contrast and visibility
+            }}
+            animate={{
+              scale: [1, 1.05, 1],
+              x: [0, 5, -5, 0],
+              y: [0, -5, 5, 0]
+            }}
+            transition={{
+              duration: 25,
+              ease: "linear",
+              repeat: Infinity
+            }}
+          />
           {/* Layer 2: radial-gradient spotlight */}
           <div 
             className="absolute inset-0 pointer-events-none"
@@ -171,7 +184,7 @@ export default function Home() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-ash font-body text-[18px] max-w-xl mx-auto mb-10 leading-relaxed font-light"
+              className="text-[#CCCCCC] font-body text-[18px] max-w-xl mx-auto mb-10 leading-relaxed font-light"
             >
               Where Machines Go to War. Book your arena slot, intern with us, or verify your certificate.
             </motion.p>
