@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import { 
   IconBrandInstagram, 
@@ -9,32 +9,8 @@ import {
 } from "@tabler/icons-react";
 
 export default function Footer() {
-  const navigate = useNavigate();
-
   return (
     <footer className="w-full bg-[#080808] border-t border-fire/15 relative z-10">
-      
-      {/* PRE-FOOTER CTA STRIP */}
-      <div className="w-full bg-fire py-10 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
-            <h2 className="font-display text-4xl font-black text-forge uppercase leading-none mb-1">
-              COMPLETED AN INTERNSHIP?
-            </h2>
-            <p className="font-body text-sm text-forge/70">
-              Verify your certificate instantly — free, permanent, and tamper-proof.
-            </p>
-          </div>
-          <button
-            onClick={() => navigate("/verify")}
-            className="w-full md:w-auto px-8 py-4 bg-[#080808] hover:bg-[#1A1A1A] text-white font-display text-[18px] uppercase tracking-wider transition-colors rounded-none shrink-0"
-          >
-            VERIFY CERTIFICATE →
-          </button>
-        </div>
-      </div>
-
-      {/* MAIN FOOTER BODY */}
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         
         {/* Col 1 — Brand */}
@@ -72,7 +48,6 @@ export default function Footer() {
             <Link to="/" className="hover:text-text-primary transition-colors">Home</Link>
             <Link to="/arena" className="hover:text-text-primary transition-colors">Arena</Link>
             <Link to="/internships" className="hover:text-text-primary transition-colors">Internships</Link>
-            <Link to="/verify" className="hover:text-text-primary transition-colors">Verify Certificate</Link>
             <Link to="/about" className="hover:text-text-primary transition-colors">About</Link>
             <Link to="/contact" className="hover:text-text-primary transition-colors">Contact</Link>
           </div>

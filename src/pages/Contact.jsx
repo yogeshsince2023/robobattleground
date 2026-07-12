@@ -121,12 +121,6 @@ export default function Contact() {
                   >
                     Apply for Internship →
                   </Link>
-                  <Link 
-                    to="/verify" 
-                    className="block border-b border-plate py-3 text-sm text-ash hover:text-fire hover:pl-2 transition-all"
-                  >
-                    Verify Certificate →
-                  </Link>
                 </div>
               </div>
             </div>

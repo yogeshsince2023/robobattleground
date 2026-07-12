@@ -185,9 +185,8 @@ export default function Arena() {
                   specs: [
                     { k: "Max Weight", v: "60kg" },
                     { k: "Floor", v: "Steel Plate" },
-                    { k: "Enclosure", v: "20mm Polycarbonate" },
-                    { k: "Lighting", v: "Arena flood" },
-                    { k: "Spectators", v: "50 seating" }
+                    { k: "Enclosure", v: "15mm Polycarbonate" },
+                    { k: "Lighting", v: "Arena flood" }
                   ],
                   icon: <IconSwords size={40} className="text-fire" />
                 },

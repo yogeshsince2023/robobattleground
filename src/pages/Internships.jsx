@@ -215,12 +215,6 @@ export default function Internships() {
               >
                 Apply Now
               </button>
-              <Link 
-                to="/verify"
-                className="px-10 py-4 bg-transparent border border-fire text-fire font-display text-2xl uppercase tracking-wider hover:bg-fire/10 active:scale-[0.98] transition-all rounded-none shrink-0"
-              >
-                Verify Existing Cert →
-              </Link>
             </div>
           </div>
         </section>
