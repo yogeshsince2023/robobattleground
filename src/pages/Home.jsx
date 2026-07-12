@@ -76,14 +76,6 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  const handleCertSubmit = (e) => {
-    e.preventDefault();
-    const val = e.target.certCode.value?.trim();
-    if (val) {
-      navigate(`/verify?cert=${encodeURIComponent(val)}`);
-    }
-  };
-
   useDocumentMetadata("The Robo Battle Ground — India's Premier Combat Robotics Arena", "Enter India's ultimate combat robotics arena. Book live battle slots, apply for certified engineering internships, and verify builder credentials.");
 
   return (
@@ -201,12 +193,6 @@ export default function Home() {
                 className="px-8 py-4 bg-fire text-forge font-display text-[18px] uppercase tracking-wider hover:bg-[#cc3700] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 select-none rounded-none shrink-0"
               >
                 Explore Arena →
-              </Link>
-              <Link 
-                to="/verify"
-                className="px-8 py-4 bg-transparent border border-fire text-fire font-display text-[18px] uppercase tracking-wider hover:bg-fire/10 active:scale-[0.98] transition-all duration-200 select-none rounded-none shrink-0"
-              >
-                Verify Certificate
               </Link>
             </motion.div>
           </motion.div>
@@ -335,44 +321,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION 3 — CERTIFICATE VERIFY TEASER */}
-        <section className="bg-fire text-forge py-16 px-4">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-8">
-            
-            {/* Left Text */}
-            <div className="max-w-xl text-center lg:text-left">
-              <h2 className="font-display text-[clamp(28px,5vw,52px)] font-black uppercase text-forge leading-none mb-2">
-                VERIFY YOUR CERTIFICATE
-              </h2>
-              <p className="font-body text-[16px] text-forge/80">
-                Every certificate issued by The Robo Battle Ground is verifiable in real-time. No fakes.
-              </p>
-            </div>
-
-            {/* Right Input Form */}
-            <form 
-              onSubmit={handleCertSubmit}
-              className="w-full lg:max-w-md flex flex-col sm:flex-row items-stretch gap-0"
-            >
-              <label htmlFor="home-cert-code" className="sr-only">Certificate Verification Code</label>
-              <input 
-                id="home-cert-code"
-                name="certCode"
-                type="text" 
-                placeholder="Enter cert no. e.g. TRBG-2024-0042"
-                className="flex-grow p-4 bg-white text-forge border-none outline-none font-mono uppercase tracking-wider text-sm rounded-none"
-                required
-              />
-              <button 
-                type="submit"
-                className="bg-[#080808] hover:bg-black text-white font-display text-[18px] tracking-wider px-8 py-4 sm:py-0 uppercase transition-colors rounded-none shrink-0"
-              >
-                Verify
-              </button>
-            </form>
-
-          </div>
-        </section>
 
         {/* SECTION 4 — WHY TRBG (Stack to single col on mobile) */}
         <section className="bg-forge py-24 px-4 border-b border-plate">
