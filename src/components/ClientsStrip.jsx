@@ -6,21 +6,18 @@ function LogoCard({ client }) {
 
   return (
     <div
-      className="mx-6 flex items-center justify-center h-16 min-w-[140px] shrink-0 cursor-default"
-      style={{ filter: "grayscale(100%) opacity(0.45)", transition: "filter 0.3s ease" }}
-      onMouseEnter={(e) => { e.currentTarget.style.filter = "grayscale(0%) opacity(1)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.filter = "grayscale(100%) opacity(0.45)"; }}
+      className="mx-8 md:mx-12 flex items-center justify-center h-20 md:h-24 min-w-[160px] md:min-w-[200px] shrink-0 cursor-default transition-all duration-300 hover:scale-110 opacity-80 hover:opacity-100"
     >
       {client.logo_url && !imgFailed ? (
         <img
           src={client.logo_url}
           alt={client.name}
           loading="lazy"
-          className="h-[36px] md:h-[44px] w-auto object-contain"
+          className="h-[48px] md:h-[60px] w-auto object-contain select-none"
           onError={() => setImgFailed(true)}
         />
       ) : (
-        <span className="text-[#444] font-body text-sm tracking-wider uppercase">
+        <span className="text-[#888] font-body text-xs font-semibold tracking-wider uppercase">
           {client.name}
         </span>
       )}
