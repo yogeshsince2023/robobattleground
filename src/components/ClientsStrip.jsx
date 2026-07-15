@@ -7,7 +7,7 @@ function LogoCard({ client }) {
 
   return (
     <div
-      className="mx-12 md:mx-18 flex items-center justify-center h-32 md:h-40 min-w-[240px] md:min-w-[320px] shrink-0 cursor-default transition-all duration-300 hover:scale-110 opacity-90 hover:opacity-100"
+      className="mx-12 md:mx-18 flex items-center justify-center h-36 md:h-44 min-w-[260px] md:min-w-[340px] shrink-0 cursor-default transition-all duration-300 hover:scale-110 opacity-90 hover:opacity-100"
     >
       {client.logo_url && !imgFailed ? (
         <a 
@@ -21,26 +21,23 @@ function LogoCard({ client }) {
             src={buildLogoUrl(client.logo_url)}
             alt={`${client.name} logo`}
             loading="lazy"
-            width={240}
-            height={120}
+            width={260}
+            height={135}
             className="select-none"
             style={{
               height: "auto",
-              maxHeight: "120px",
+              maxHeight: "135px",
               width: "auto",
-              maxWidth: "240px",
+              maxWidth: "260px",
               objectFit: "contain",
-              filter: "grayscale(100%) brightness(0.6)",
-              transition: "filter 0.3s ease, opacity 0.3s ease",
-              opacity: 0.7
+              transition: "opacity 0.3s ease",
+              opacity: 0.9
             }}
             onMouseEnter={e => {
-              e.target.style.filter = "grayscale(0%) brightness(1)";
               e.target.style.opacity = "1";
             }}
             onMouseLeave={e => {
-              e.target.style.filter = "grayscale(100%) brightness(0.6)";
-              e.target.style.opacity = "0.7";
+              e.target.style.opacity = "0.9";
             }}
             onError={() => setImgFailed(true)}
           />
