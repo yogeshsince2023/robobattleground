@@ -209,7 +209,7 @@ export default function Machining() {
                     <p className="text-ash text-[14px] leading-[1.7] mt-2">{svc.desc}</p>
                     <div className="flex flex-wrap gap-1.5 mt-4">
                       {svc.pills.map((p) => (
-                        <span key={p} className="bg-[#1A1A1A] text-[#555] px-2 py-1 text-[11px] font-body rounded-sm">{p}</span>
+                        <span key={p} className="bg-[#1A1A1A] text-[#7A7A7A] px-2 py-1 text-[11px] font-body rounded-sm">{p}</span>
                       ))}
                     </div>
                   </div>

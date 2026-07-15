@@ -167,13 +167,13 @@ export default function ClientsAdmin() {
             {formData.logo_url && (
               <div className="flex flex-col gap-1 p-4 bg-[#080808] border border-[#1A1A1A] flex-1 min-w-[200px]">
                 <span className="text-[10px] uppercase tracking-widest text-ash/70 block mb-2">Logo Preview</span>
-                <img src={formData.logo_url} alt="logo preview" className="h-10 w-auto object-contain self-start" onError={(e) => { e.target.style.display = 'none'; }} />
+                <img src={formData.logo_url} alt="logo preview" width={100} height={40} className="h-10 w-auto object-contain self-start" onError={(e) => { e.target.style.display = 'none'; }} />
               </div>
             )}
             {formData.highlight_image_url && (
               <div className="flex flex-col gap-1 p-4 bg-[#080808] border border-[#1A1A1A] flex-1 min-w-[200px]">
                 <span className="text-[10px] uppercase tracking-widest text-ash/70 block mb-2">Highlight Image Preview</span>
-                <img src={formData.highlight_image_url} alt="highlight preview" className="h-20 w-auto object-contain self-start" onError={(e) => { e.target.style.display = 'none'; }} />
+                <img src={formData.highlight_image_url} alt="highlight preview" width={200} height={80} className="h-20 w-auto object-contain self-start" onError={(e) => { e.target.style.display = 'none'; }} />
               </div>
             )}
           </div>
@@ -204,7 +204,7 @@ export default function ClientsAdmin() {
               <div key={c.id} className={`p-4 bg-[#080808] border border-[#1A1A1A] flex items-center justify-between gap-4 ${!c.is_visible ? "opacity-50" : ""}`}>
                 <div className="flex items-center gap-4">
                   {c.logo_url ? (
-                    <img src={c.logo_url} alt={c.name} className="h-10 w-auto max-w-[120px] object-contain" />
+                    <img src={c.logo_url} alt={c.name} width={120} height={40} className="h-10 w-auto max-w-[120px] object-contain" />
                   ) : (
                     <div className="h-10 w-20 bg-[#1A1A1A] flex items-center justify-center text-[10px] text-ash/40 uppercase">No Logo</div>
                   )}

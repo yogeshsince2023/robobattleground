@@ -1,0 +1,32 @@
+# The Robo Battle Ground
+> India's Premier Combat Robotics Arena
+
+## About
+The Robo Battle Ground (TRBG) is a combat robotics 
+arena and internship program based in Jaipur, 
+Rajasthan, India.
+
+## Services
+- RoboWar Arena: Full-scale combat robot battles
+- BattleBot Pit: Build and test facility  
+- Machining & Fabrication: CNC, 3D printing, 
+  laser cutting, PCB manufacturing
+- Internship Program: Hands-on robotics training
+
+## Contact
+Email: therobobattleground@gmail.com
+WhatsApp: +91 85298 96177
+Location: Jaipur, Rajasthan, India
+
+## Certificate Verification
+Verify internship certificates at:
+https://therobobattleground.in/verify
+
+## Pages
+- /arena - Arena booking and services
+- /machining - Fabrication services
+- /internships - Internship program
+- /projects - Student projects showcase
+- /verify - Certificate verification
+- /about - About the team
+- /contact - Contact and enquiries

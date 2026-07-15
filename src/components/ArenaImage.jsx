@@ -31,7 +31,7 @@ export default function ArenaImage({ src, alt, className = "", overlay = true })
         `}</style>
 
         <IconPhoto size={48} className="text-[#333333] group-hover/placeholder:text-fire/40 transition-colors duration-300 group-hover/placeholder:scale-110" />
-        <span className="Inter text-[13px] uppercase tracking-wider text-[#444444] font-semibold group-hover/placeholder:text-fire/70 transition-colors duration-300">
+        <span className="Inter text-[13px] uppercase tracking-wider text-[#6A6A6A] font-semibold group-hover/placeholder:text-fire/70 transition-colors duration-300">
           Photo coming soon
         </span>
       </div>
@@ -44,6 +44,8 @@ export default function ArenaImage({ src, alt, className = "", overlay = true })
         src={src}
         alt={alt}
         loading="lazy"
+        width={800}
+        height={400}
         onError={() => setHasError(true)}
         className="w-full h-full object-cover"
       />

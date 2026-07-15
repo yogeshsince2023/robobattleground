@@ -1,7 +1,7 @@
 export const images = {
   arena: {
-    heroBg: "https://res.cloudinary.com/rshcmlou/image/upload/v1783877700/Jul_12_2026_10_20_20_PM_hpzpw0.png",
-    zoneA:  "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-2_tdhzkf.jpg",
+    heroBg: "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_1600,c_fill,g_center/v1783877700/Jul_12_2026_10_20_20_PM_hpzpw0.png",
+    zoneA:  "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_800,c_fill,g_center/v1783871924/arena-2_tdhzkf.jpg",
     zoneB:  "",
     zoneC:  "",
   },
@@ -21,11 +21,11 @@ export const images = {
     bot3: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80&fit=crop",
   },
   gallery: {
-    photo1: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-2_tdhzkf.jpg",
-    photo2: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-3_ixbrm7.jpg",
-    photo3: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-4_kbcpjf.jpg",
-    photo4: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-5_wbfv1d.jpg",
-    photo5: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871925/arena-6_jlixgo.jpg",
-    photo6: "https://res.cloudinary.com/rshcmlou/image/upload/v1783871924/arena-7_ftyho3.jpg",
+    photo1: "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_600,c_fill/v1783871924/arena-2_tdhzkf.jpg",
+    photo2: "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_600,c_fill/v1783871924/arena-3_ixbrm7.jpg",
+    photo3: "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_600,c_fill/v1783871924/arena-4_kbcpjf.jpg",
+    photo4: "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_600,c_fill/v1783871924/arena-5_wbfv1d.jpg",
+    photo5: "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_600,c_fill/v1783871925/arena-6_jlixgo.jpg",
+    photo6: "https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_600,c_fill/v1783871924/arena-7_ftyho3.jpg",
   }
 };

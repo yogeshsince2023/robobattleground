@@ -61,3 +61,18 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .marquee-row { animation: none !important; }
 }
+
+/* Font loading optimization */
+@font-face {
+  font-family: 'Bebas Neue';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+/* Suspense Spinner Animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -91,8 +91,8 @@ export default function Projects() {
             /* Empty state — no projects at all */
             <div className="text-center py-24 select-none">
               <IconHammer size={80} className="mx-auto text-[#1A1A1A] mb-6" />
-              <h2 className="font-display text-[36px] text-[#333] uppercase tracking-wider mb-3">PROJECTS LOADING INTO THE PIT</h2>
-              <p className="text-[#444] text-[16px] max-w-md mx-auto">Our builders are working on something legendary. Check back soon.</p>
+              <h2 className="font-display text-[36px] text-[#7A7A7A] uppercase tracking-wider mb-3">PROJECTS LOADING INTO THE PIT</h2>
+              <p className="text-[#6A6A6A] text-[16px] max-w-md mx-auto">Our builders are working on something legendary. Check back soon.</p>
             </div>
           ) : filtered.length === 0 ? (
             /* No results for this filter */
@@ -112,7 +112,7 @@ export default function Projects() {
                     {/* Cover image */}
                     <div className="relative h-[200px] bg-[#1A1A1A] overflow-hidden">
                       {project.cover_image_url ? (
-                        <img src={project.cover_image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <img src={project.cover_image_url} alt={project.title} width={800} height={450} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
                           <FallbackIcon size={48} className="text-[#333]" />
@@ -134,7 +134,7 @@ export default function Projects() {
                     <div className="p-5">
                       <h3 className="font-display text-[22px] text-[#F5F5F5] uppercase tracking-wide group-hover:text-fire transition-colors">{project.title}</h3>
                       {(project.team_name || project.college) && (
-                        <p className="text-[#555] text-[12px] mt-1 font-body">
+                        <p className="text-[#7A7A7A] text-[12px] mt-1 font-body">
                           {[project.team_name && `by ${project.team_name}`, project.college].filter(Boolean).join(" · ")}
                         </p>
                       )}
@@ -144,7 +144,7 @@ export default function Projects() {
                       {project.tags && project.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1.5 mt-3">
                           {project.tags.map((tag) => (
-                            <span key={tag} className="bg-[#1A1A1A] text-[#555] px-2 py-0.5 text-[11px] font-body rounded-sm">{tag}</span>
+                            <span key={tag} className="bg-[#1A1A1A] text-[#7A7A7A] px-2 py-0.5 text-[11px] font-body rounded-sm">{tag}</span>
                           ))}
                         </div>
                       )}

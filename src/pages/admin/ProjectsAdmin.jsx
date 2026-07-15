@@ -208,7 +208,7 @@ export default function ProjectsAdmin() {
                 {/* Thumbnail */}
                 <div className="w-12 h-12 bg-[#1A1A1A] shrink-0 overflow-hidden">
                   {p.cover_image_url ? (
-                    <img src={p.cover_image_url} alt="" className="w-full h-full object-cover" />
+                    <img src={p.cover_image_url} alt="" width={48} height={48} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-[#333]">
                       <IconEye size={16} />
@@ -343,7 +343,7 @@ export default function ProjectsAdmin() {
                   <label className="text-[10px] uppercase text-ash tracking-widest block mb-2">Cover Image</label>
                   {form.cover_image_url ? (
                     <div className="relative mb-2 border border-[#1A1A1A] overflow-hidden">
-                      <img src={form.cover_image_url} alt="Cover" className="w-full h-40 object-cover" />
+                      <img src={form.cover_image_url} alt="Cover" width={320} height={160} className="w-full h-40 object-cover" />
                       <button onClick={() => setForm((p) => ({ ...p, cover_image_url: "" }))} className="absolute top-2 right-2 bg-[#080808]/80 p-1 text-ash hover:text-red-500 transition-colors">
                         <IconX size={14} />
                       </button>
@@ -362,7 +362,7 @@ export default function ProjectsAdmin() {
                     <div className="grid grid-cols-4 gap-2 mb-2">
                       {form.gallery_urls.map((url, i) => (
                         <div key={i} className="relative border border-[#1A1A1A] overflow-hidden aspect-square">
-                          <img src={url} alt="" className="w-full h-full object-cover" />
+                          <img src={url} alt="" width={80} height={80} className="w-full h-full object-cover" />
                           <button onClick={() => removeGalleryImage(i)} className="absolute top-1 right-1 bg-[#080808]/80 p-0.5 text-ash hover:text-red-500 transition-colors">
                             <IconX size={12} />
                           </button>

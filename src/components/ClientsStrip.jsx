@@ -13,6 +13,8 @@ function LogoCard({ client }) {
           src={client.logo_url}
           alt={client.name}
           loading="lazy"
+          width={240}
+          height={120}
           className="h-[90px] md:h-[120px] w-auto object-contain select-none"
           onError={() => setImgFailed(true)}
         />
@@ -123,7 +125,7 @@ function Header() {
   return (
     <div className="flex items-center gap-4 max-w-md mx-auto mb-12 px-4">
       <div className="flex-1 border-t border-[#1A1A1A]" />
-      <span className="text-[11px] text-[#444] uppercase tracking-[0.3em] font-body">
+      <span className="text-[11px] text-[#6A6A6A] uppercase tracking-[0.3em] font-body">
         Trusted By
       </span>
       <div className="flex-1 border-t border-[#1A1A1A]" />

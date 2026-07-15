@@ -301,6 +301,8 @@ export default function GalleryAdmin() {
                   <img 
                     src={item.preview} 
                     alt="Upload Preview" 
+                    width={64}
+                    height={64}
                     className="w-16 h-16 object-cover border border-[#1A1A1A] shrink-0" 
                   />
                   <div className="flex-grow min-w-0 space-y-1">
@@ -381,6 +383,8 @@ export default function GalleryAdmin() {
                   <img 
                     src={photo.public_url} 
                     alt={photo.title || "Gallery"} 
+                    width={320}
+                    height={180}
                     className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
                       !photo.is_visible ? "grayscale opacity-30" : ""
                     }`}

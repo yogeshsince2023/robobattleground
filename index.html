@@ -8,9 +8,31 @@
     <meta name="description" content="The Robo Battle Ground" />
     <meta property="og:title" content="The Robo Battle Ground" />
     <meta property="og:description" content="The Robo Battle Ground" />
+    <!-- DNS prefetch first -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Load fonts without blocking render -->
+    <link 
+      rel="preload" 
+      as="style" 
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link 
+        rel="stylesheet" 
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap"
+      />
+    </noscript>
+
+    <!-- Preload Hero Background Image for LCP Optimization -->
+    <link 
+      rel="preload" 
+      as="image" 
+      href="https://res.cloudinary.com/rshcmlou/image/upload/f_auto,q_auto:good,w_1600,c_fill,g_center/v1783877700/Jul_12_2026_10_20_20_PM_hpzpw0.png"
+      fetchpriority="high"
+    />
   </head>
   <body>
     <div id="root"></div>

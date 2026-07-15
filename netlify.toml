@@ -6,3 +6,62 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Clickjacking protection (fixes XFO warning)
+    X-Frame-Options = "DENY"
+    
+    # MIME sniffing protection
+    X-Content-Type-Options = "nosniff"
+    
+    # XSS protection (legacy browsers)
+    X-XSS-Protection = "1; mode=block"
+    
+    # Referrer policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Cross-Origin Opener Policy (fixes COOP warning)
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+    
+    # Cross-Origin Embedder Policy
+    Cross-Origin-Embedder-Policy = "unsafe-none"
+    
+    # Permissions policy
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    
+    # Content Security Policy (fixes CSP warnings)
+    Content-Security-Policy = '''
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: blob: 
+        https://res.cloudinary.com 
+        https://images.unsplash.com 
+        https://*.supabase.co;
+      connect-src 'self' 
+        https://*.supabase.co 
+        https://res.cloudinary.com;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    '''
+
+# Cache static assets aggressively (performance boost)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+

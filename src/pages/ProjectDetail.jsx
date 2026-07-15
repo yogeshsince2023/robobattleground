@@ -69,7 +69,7 @@ export default function ProjectDetail() {
           {/* Cover image */}
           {project.cover_image_url && (
             <div className="w-full max-h-[500px] overflow-hidden mb-8 border border-[#1A1A1A]">
-              <img src={project.cover_image_url} alt={project.title} className="w-full h-full object-cover" />
+              <img src={project.cover_image_url} alt={project.title} width={800} height={450} className="w-full h-full object-cover" />
             </div>
           )}
 
@@ -114,7 +114,7 @@ export default function ProjectDetail() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {project.gallery_urls.map((url, i) => (
                   <a key={i} href={url} target="_blank" rel="noopener noreferrer" className="border border-[#1A1A1A] overflow-hidden hover:border-fire transition-colors block">
-                    <img src={url} alt={`${project.title} photo ${i + 1}`} className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300" />
+                    <img src={url} alt={`${project.title} photo ${i + 1}`} width={600} height={400} className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300" />
                   </a>
                 ))}
               </div>
@@ -125,7 +125,7 @@ export default function ProjectDetail() {
           {project.tags && project.tags.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mb-8">
               {project.tags.map((tag) => (
-                <span key={tag} className="bg-[#1A1A1A] text-[#555] px-2 py-1 text-[11px] font-body rounded-sm">{tag}</span>
+                <span key={tag} className="bg-[#1A1A1A] text-[#7A7A7A] px-2 py-1 text-[11px] font-body rounded-sm">{tag}</span>
               ))}
             </div>
           )}

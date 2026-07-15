@@ -49,7 +49,7 @@ export default function AdminLayout() {
         {/* Top Branding Logo */}
         <div className="p-6 border-b border-[#1A1A1A] flex items-center gap-3">
           {/* Logo Skull */}
-          <img src={logo} alt="TRBG Logo" className="w-8 h-8 object-contain shrink-0" />
+          <img src={logo} alt="TRBG Logo" width={32} height={32} className="w-8 h-8 object-contain shrink-0" />
           <span className="font-display text-2xl uppercase tracking-wider text-text-primary">
             TRBG <span className="text-fire">ADMIN</span>
           </span>
@@ -95,7 +95,7 @@ export default function AdminLayout() {
       {/* MOBILE TOP BAR */}
       <header className="md:hidden bg-[#0A0A0A] border-b border-[#1A1A1A] py-3 px-4 flex justify-between items-center sticky top-0 z-40 select-none">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="TRBG Logo" className="w-6 h-6 object-contain shrink-0" />
+          <img src={logo} alt="TRBG Logo" width={24} height={24} className="w-6 h-6 object-contain shrink-0" />
           <span className="font-display text-xl uppercase tracking-wider text-text-primary">
             TRBG <span className="text-fire">CONTROL</span>
           </span>

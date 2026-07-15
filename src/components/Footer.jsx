@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             {/* Logo */}
-            <img src={logo} alt="The Robo BG Logo" className="w-6 h-6 object-contain shrink-0" />
+            <img src={logo} alt="The Robo BG Logo" width={24} height={24} className="w-6 h-6 object-contain shrink-0" />
             <span className="font-display text-xl text-text-primary uppercase tracking-wider font-black">
               THE ROBO <span className="text-fire">BG</span>
             </span>
@@ -93,14 +93,14 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="max-w-7xl mx-auto px-6 border-t border-[#111] py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] text-[#444] font-body">
+      <div className="max-w-7xl mx-auto px-6 border-t border-[#111] py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[12px] text-[#6A6A6A] font-body">
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-center sm:text-left">
           <span>© 2025 The Robo Battle Ground. All Rights Reserved.</span>
           <Link to="/terms" className="hover:text-text-primary transition-colors underline decoration-fire/40 underline-offset-4">
             Terms & Conditions
           </Link>
         </div>
-        <span className="font-mono text-[11px] uppercase tracking-wider text-[#333] hover:text-[#555] transition-colors select-all">Udyam No: UDYAM-RJ-21-0091002</span>
+        <span className="font-mono text-[11px] uppercase tracking-wider text-[#6A6A6A] hover:text-[#9A9A9A] transition-colors select-all">Udyam No: UDYAM-RJ-21-0091002</span>
         <span>Made with ⚡ in India</span>
       </div>
 

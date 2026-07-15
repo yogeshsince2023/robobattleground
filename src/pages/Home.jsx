@@ -145,48 +145,28 @@ export default function Home() {
             className="max-w-4xl mx-auto text-center z-10 px-4 flex flex-col items-center justify-center"
           >
             {/* Eyebrow */}
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex items-center gap-4 mb-6 w-full justify-center"
-            >
+            <div className="flex items-center gap-4 mb-6 w-full justify-center">
               <div className="h-[1px] bg-[#FF4500] w-6 md:w-16 shrink-0" />
               <span className="text-spark font-body text-[11px] font-semibold uppercase tracking-[0.2em] whitespace-nowrap">
                 ⚡ INDIA'S PREMIER COMBAT ROBOTICS ARENA
               </span>
               <div className="h-[1px] bg-[#FF4500] w-6 md:w-16 shrink-0" />
-            </motion.div>
+            </div>
 
             {/* Headline */}
             <h1 className="font-display uppercase font-black leading-none mb-6">
-              <motion.span
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.15, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="block text-text-primary text-[clamp(40px,8vw,96px)]"
-              >
+              <span className="block text-text-primary text-[clamp(40px,8vw,96px)]">
                 ENTER THE
-              </motion.span>
-              <motion.span
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.25, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="block text-fire text-[clamp(40px,8vw,96px)]"
-              >
+              </span>
+              <span className="block text-fire text-[clamp(40px,8vw,96px)]">
                 BATTLE GROUND
-              </motion.span>
+              </span>
             </h1>
 
             {/* Subheadline */}
-            <motion.p
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-[#CCCCCC] font-body text-[18px] max-w-xl mx-auto mb-10 leading-relaxed font-light"
-            >
+            <p className="text-[#CCCCCC] font-body text-[18px] max-w-xl mx-auto mb-10 leading-relaxed font-light">
               The ultimate proving ground for combat robotics. Book your cage slot or launch your engineering internship.
-            </motion.p>
+            </p>
 
             {/* CTA Row */}
             <motion.div
@@ -323,7 +303,9 @@ export default function Home() {
                     to={i === 2 ? "/internships" : "/arena"}
                     className="text-fire text-[13px] font-semibold tracking-wider flex items-center gap-1 hover:underline self-start uppercase"
                   >
-                    LEARN MORE →
+                    {i === 0 && "EXPLORE ARENA →"}
+                    {i === 1 && "EXPLORE BUILD PIT →"}
+                    {i === 2 && "VIEW INTERNSHIP PROGRAM →"}
                   </Link>
                 </div>
               ))}
@@ -406,7 +388,7 @@ export default function Home() {
                   >
                     <div className="relative h-[200px] bg-[#1A1A1A] overflow-hidden">
                       {project.cover_image_url ? (
-                        <img src={project.cover_image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <img src={project.cover_image_url} alt={project.title} width={800} height={450} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
                           <IconRobot size={48} className="text-[#333]" />
@@ -420,8 +402,8 @@ export default function Home() {
                     </div>
                     <div className="p-5">
                       <h3 className="font-display text-[22px] text-text-primary uppercase tracking-wide group-hover:text-fire transition-colors">{project.title}</h3>
-                      {(project.team_name || project.college) && (
-                        <p className="text-[#555] text-[12px] mt-1">
+                       {(project.team_name || project.college) && (
+                        <p className="text-[#7A7A7A] text-[12px] mt-1">
                           {[project.team_name && `by ${project.team_name}`, project.college].filter(Boolean).join(" · ")}
                         </p>
                       )}

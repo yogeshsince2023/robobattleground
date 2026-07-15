@@ -12,7 +12,7 @@ export default {
         plate: '#1A1A1A',
         fire: '#FF4500',
         spark: '#FFB800',
-        ash: '#888888',
+        ash: '#9A9A9A',
       },
       fontFamily: {
         display: ['Bebas Neue', 'sans-serif'],

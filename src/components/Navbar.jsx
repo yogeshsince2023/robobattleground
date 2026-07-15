@@ -16,7 +16,7 @@ const links = [
 ];
 
 const Logo = () => (
-  <img src={logo} alt="The Robo Battle Ground Logo" className="w-8 h-8 object-contain shrink-0" />
+  <img src={logo} alt="The Robo Battle Ground Logo" width={32} height={32} className="w-8 h-8 object-contain shrink-0" />
 );
 
 export default function Navbar() {

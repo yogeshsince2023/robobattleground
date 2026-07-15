@@ -90,7 +90,7 @@ export default function AdminLogin() {
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2">
             {/* SVG Skull Logo */}
-            <img src={logo} alt="TRBG Logo" className="w-8 h-8 object-contain shrink-0" />
+            <img src={logo} alt="TRBG Logo" width={32} height={32} className="w-8 h-8 object-contain shrink-0" />
             <h1 className="font-display text-4xl uppercase tracking-wider text-text-primary leading-none">
               ADMIN ACCESS
             </h1>
