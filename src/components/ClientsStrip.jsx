@@ -6,18 +6,18 @@ function LogoCard({ client }) {
 
   return (
     <div
-      className="mx-8 md:mx-12 flex items-center justify-center h-20 md:h-24 min-w-[160px] md:min-w-[200px] shrink-0 cursor-default transition-all duration-300 hover:scale-110 opacity-80 hover:opacity-100"
+      className="mx-12 md:mx-18 flex items-center justify-center h-32 md:h-40 min-w-[240px] md:min-w-[320px] shrink-0 cursor-default transition-all duration-300 hover:scale-110 opacity-90 hover:opacity-100"
     >
       {client.logo_url && !imgFailed ? (
         <img
           src={client.logo_url}
           alt={client.name}
           loading="lazy"
-          className="h-[48px] md:h-[60px] w-auto object-contain select-none"
+          className="h-[90px] md:h-[120px] w-auto object-contain select-none"
           onError={() => setImgFailed(true)}
         />
       ) : (
-        <span className="text-[#888] font-body text-xs font-semibold tracking-wider uppercase">
+        <span className="text-[#888] font-body text-sm font-semibold tracking-wider uppercase">
           {client.name}
         </span>
       )}
@@ -59,7 +59,7 @@ export default function ClientsStrip() {
       <section className="bg-[#0A0A0A] border-y border-[#1A1A1A] py-16 overflow-hidden">
         <div className="flex justify-center gap-6">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-10 w-32 bg-[#111111] animate-pulse rounded-sm" />
+            <div key={i} className="h-20 w-48 bg-[#111111] animate-pulse rounded-sm" />
           ))}
         </div>
       </section>
