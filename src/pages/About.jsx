@@ -14,7 +14,10 @@ const timelineData = [
 
 
 export default function About() {
-  useDocumentMetadata("About Us — The Robo Battle Ground", "Read the combat robotics crew mission and timeline landmarks of The Robo Battle Ground platform. Driven by Yogesh and technical fight marshals.");
+  useDocumentMetadata({
+    title: "About Us — The Robo Battle Ground",
+    description: "Born from competition. The Robo Battle Ground is Jaipur's combat robotics arena built by engineers, for engineers.",
+  });
 
   return (
     <PageWrapper>

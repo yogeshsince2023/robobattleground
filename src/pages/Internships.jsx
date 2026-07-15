@@ -15,6 +15,7 @@ import PageWrapper from "../components/PageWrapper.jsx";
 import { images } from "../assets/images/index.js";
 import ArenaImage from "../components/ArenaImage.jsx";
 import { submitInternshipApplication } from "../lib/db.js";
+import { checkRateLimit } from "../lib/rateLimit.js";
 
 const tracksData = [
   {
@@ -81,12 +82,34 @@ export default function Internships() {
   });
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
-  const handleApplyClick = (trackName = "") => {
-    if (trackName) {
-      setFormData((prev) => ({ ...prev, track: trackName }));
-    }
-    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleApplyClick = (trackName = "", durationVal = "") => {
+    setFormData((prev) => {
+      const updated = { ...prev };
+      if (trackName) {
+        let matchedTrack = trackName;
+        if (trackName.includes("Arena Operations")) {
+          matchedTrack = "Arena Operations";
+        }
+        updated.track = matchedTrack;
+
+        // Auto select a default duration if not specified
+        if (!durationVal) {
+          if (matchedTrack === "Combat Bot Design") updated.duration = "8 Weeks";
+          else if (matchedTrack === "Embedded Systems & Control") updated.duration = "4 Weeks";
+          else if (matchedTrack === "Arena Operations") updated.duration = "8 Weeks";
+        }
+      }
+      if (durationVal) {
+        updated.duration = durationVal;
+      }
+      return updated;
+    });
+    setTimeout(() => {
+      document.getElementById("application-form")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   const handleChange = (e) => {
@@ -128,10 +151,20 @@ export default function Internships() {
       newErrors.statement = "Statement must be at least 50 characters.";
     }
 
+    if (honeypot) {
+      setSuccess(true); // fake success
+      return; // silently discard
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
       setErrors({});
+      const { allowed, message } = checkRateLimit("internships");
+      if (!allowed) {
+        setErrors({ submit: message });
+        return;
+      }
       try {
         const insertData = {
           full_name: formData.fullName,
@@ -166,9 +199,13 @@ export default function Internships() {
     });
     setStatement("");
     setSuccess(false);
+    setHoneypot("");
   };
 
-  useDocumentMetadata("Robotics Internship Program — TRBG", "Forge real-world mechanical and firmware engineering skills inside the battle bot design pit. Apply to our rolling cohort tracks today.");
+  useDocumentMetadata({
+    title: "Robotics Internship Program — The Robo Battle Ground",
+    description: "Hands-on robotics internship in Jaipur. Combat bot design, embedded systems, and arena operations. Verifiable certificate on completion.",
+  });
 
   return (
     <PageWrapper>
@@ -268,7 +305,7 @@ export default function Internships() {
                         <p className="text-xs text-ash/80 max-w-md">{item.desc}</p>
                       </div>
                       <button 
-                        onClick={() => handleApplyClick(idx === 0 ? "4 Weeks" : idx === 1 ? "8 Weeks" : "3 Months")}
+                        onClick={() => handleApplyClick("Combat Bot Design", item.duration === "4 WEEKS" ? "4 Weeks" : item.duration === "8 WEEKS" ? "8 Weeks" : "3 Months")}
                         className="text-fire font-semibold text-xs tracking-wider uppercase hover:underline whitespace-nowrap"
                       >
                         APPLY FOR THIS TRACK →
@@ -447,7 +484,8 @@ export default function Internships() {
         </section>
 
         {/* SECTION 4 — APPLICATION FORM */}
-        <section ref={formRef} className="bg-forge py-24 px-4 relative">
+        {/* SECTION 4 — APPLICATION FORM */}
+        <section id="application-form" ref={formRef} className="bg-forge py-24 px-4 relative">
           <div className="max-w-4xl mx-auto">
             
             <AnimatePresence mode="wait">
@@ -473,6 +511,30 @@ export default function Internships() {
                   </div>
 
                   <form onSubmit={handleSubmit} className="bg-steel border border-plate p-8 md:p-12 space-y-6 rounded-none">
+                    
+                    {/* Rate limiter and Honeypot */}
+                    {errors.submit && (
+                      <div className="border border-red-500/30 bg-red-500/5 p-4 text-red-500 text-sm uppercase font-semibold text-center tracking-wider">
+                        {errors.submit}
+                      </div>
+                    )}
+
+                    <input
+                      type="text"
+                      name="website_url"
+                      value={honeypot}
+                      onChange={e => setHoneypot(e.target.value)}
+                      style={{ 
+                        position: "absolute", 
+                        left: "-9999px",
+                        opacity: 0,
+                        height: 0,
+                        width: 0
+                      }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                    />
                     
                     {/* Form splits 1 col mobile, 2 col md breakpoint */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

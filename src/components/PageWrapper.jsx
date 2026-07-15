@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function PageWrapper({ children }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0.2, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -16 }}
       transition={{ duration: 0.25, ease: "easeOut" }}

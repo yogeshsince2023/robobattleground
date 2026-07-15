@@ -3,10 +3,10 @@ import PageWrapper from "../components/PageWrapper.jsx";
 import useDocumentMetadata from "../hooks/useDocumentMetadata.js";
 
 export default function Terms() {
-  useDocumentMetadata(
-    "Terms & Conditions — The Robo Battle Ground",
-    "Read the official Terms and Conditions for accessing and using The Robo Battle Ground platform, services, and courses."
-  );
+  useDocumentMetadata({
+    title: "Terms & Conditions — The Robo Battle Ground",
+    description: "Read the official Terms and Conditions for accessing and using The Robo Battle Ground platform, services, and courses.",
+  });
 
   return (
     <PageWrapper>
@@ -35,7 +35,7 @@ export default function Terms() {
               </h2>
               <p>
                 These Terms and Conditions (“Terms”) govern your access to and use of the website 
-                <span className="text-text-primary font-medium"> www.therobobattleground.com</span> (“Website”) and any purchase of products, courses, internships, or arena services from 
+                <span className="text-text-primary font-medium"> www.therobobattleground.in</span> (“Website”) and any purchase of products, courses, internships, or arena services from 
                 <span className="text-text-primary font-medium"> The Robo Battle Ground</span> (“we”, “us”, “our”).
               </p>
               <p>

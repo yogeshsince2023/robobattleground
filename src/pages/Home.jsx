@@ -16,74 +16,32 @@ import ArenaImage from "../components/ArenaImage.jsx";
 import ClientsStrip from "../components/ClientsStrip.jsx";
 import { getFeaturedProjects } from "../lib/db.js";
 
-// Custom hook to trigger a count-up transition
-function useCountUp(target, duration = 2000, isActive = false) {
-  const [count, setCount] = useState(0);
+import { useCountUp } from "../hooks/useCountUp.js";
 
-  useEffect(() => {
-    if (!isActive) return;
-    const numVal = parseInt(target.replace(/[^0-9]/g, ""), 10);
-    if (isNaN(numVal)) {
-      setCount(target);
-      return;
-    }
-    let startTimestamp = null;
-    let animFrame = null;
-
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      setCount(Math.floor(progress * numVal));
-      if (progress < 1) {
-        animFrame = requestAnimationFrame(step);
-      }
-    };
-    animFrame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animFrame);
-  }, [target, duration, isActive]);
-
-  const hasPlus = target.includes("+");
-  const hasComma = target.includes(",");
-
-  if (typeof count === "number") {
-    let formatted = count.toString();
-    if (hasComma) {
-      formatted = count.toLocaleString();
-    }
-    return hasPlus ? `${formatted}+` : formatted;
-  }
-  return target;
-}
+const STATS = [
+  { value: 500, suffix: '+', label: 'Teams Competed' },
+  { value: 3,   suffix: '',  label: 'Arena Zones' },
+  { value: 200, suffix: '+', label: 'Internship Alumni' },
+  { value: 10000, suffix: '+', label: 'Battles Logged' },
+];
 
 export default function Home() {
   const navigate = useNavigate();
   
-  // Stats active state observer
-  const statsRef = useRef(null);
-  const [statsActive, setStatsActive] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStatsActive(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
+  const stat1 = useCountUp(500);
+  const stat2 = useCountUp(3);
+  const stat3 = useCountUp(200);
+  const stat4 = useCountUp(10000);
 
   const [featuredProjects, setFeaturedProjects] = useState([]);
   useEffect(() => {
     getFeaturedProjects().then(({ data }) => setFeaturedProjects(data || []));
   }, []);
 
-  useDocumentMetadata("The Robo Battle Ground — India's Premier Combat Robotics Arena", "Enter India's ultimate combat robotics arena. Book live battle slots, apply for certified engineering internships, and verify builder credentials.");
+  useDocumentMetadata({
+    title: "The Robo Battle Ground — India's Premier Combat Robotics Arena",
+    description: "India's premier combat robotics arena in Jaipur. Book your battle cage slot, apply for robotics internships, and verify your TRBG certificate online.",
+  });
 
   return (
     <PageWrapper>
@@ -204,16 +162,16 @@ export default function Home() {
 
         {/* SECTION 1 — STATS BAR (Ensure 2x2 grid on mobile) */}
         <section 
-          ref={statsRef}
           className="bg-steel border-y border-fire/20 py-12 text-text-primary relative"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-0">
               
               {/* Stat Item 1 */}
-              <div className="flex flex-col items-center justify-center border-r border-plate pb-2 md:pb-0">
+              <div ref={stat1.ref} className="flex flex-col items-center justify-center border-r border-plate pb-2 md:pb-0">
                 <span className="font-display text-[clamp(32px,6vw,72px)] font-bold text-fire leading-none mb-2">
-                  {useCountUp("500+", 2000, statsActive)}
+                  <noscript>500+</noscript>
+                  {stat1.count > 0 ? `${stat1.count.toLocaleString()}+` : "0+"}
                 </span>
                 <span className="font-body text-[11px] md:text-[12px] font-semibold text-ash uppercase tracking-widest text-center">
                   Teams Competed
@@ -221,9 +179,10 @@ export default function Home() {
               </div>
 
               {/* Stat Item 2 */}
-              <div className="flex flex-col items-center justify-center md:border-r border-plate pb-2 md:pb-0">
+              <div ref={stat2.ref} className="flex flex-col items-center justify-center md:border-r border-plate pb-2 md:pb-0">
                 <span className="font-display text-[clamp(32px,6vw,72px)] font-bold text-fire leading-none mb-2">
-                  {useCountUp("3", 2000, statsActive)}
+                  <noscript>3</noscript>
+                  {stat2.count > 0 ? stat2.count : "0"}
                 </span>
                 <span className="font-body text-[11px] md:text-[12px] font-semibold text-ash uppercase tracking-widest text-center">
                   Arena Zones
@@ -231,9 +190,10 @@ export default function Home() {
               </div>
 
               {/* Stat Item 3 */}
-              <div className="flex flex-col items-center justify-center border-r border-plate pt-2 md:pt-0">
+              <div ref={stat3.ref} className="flex flex-col items-center justify-center border-r border-plate pt-2 md:pt-0">
                 <span className="font-display text-[clamp(32px,6vw,72px)] font-bold text-fire leading-none mb-2">
-                  {useCountUp("200+", 2000, statsActive)}
+                  <noscript>200+</noscript>
+                  {stat3.count > 0 ? `${stat3.count.toLocaleString()}+` : "0+"}
                 </span>
                 <span className="font-body text-[11px] md:text-[12px] font-semibold text-ash uppercase tracking-widest text-center">
                   Internship Alumni
@@ -241,9 +201,10 @@ export default function Home() {
               </div>
 
               {/* Stat Item 4 */}
-              <div className="flex flex-col items-center justify-center pt-2 md:pt-0">
+              <div ref={stat4.ref} className="flex flex-col items-center justify-center pt-2 md:pt-0">
                 <span className="font-display text-[clamp(32px,6vw,72px)] font-bold text-fire leading-none mb-2">
-                  {useCountUp("10,000+", 2000, statsActive)}
+                  <noscript>10,000+</noscript>
+                  {stat4.count > 0 ? `${stat4.count.toLocaleString()}+` : "0+"}
                 </span>
                 <span className="font-body text-[11px] md:text-[12px] font-semibold text-ash uppercase tracking-widest text-center">
                   Battles Logged

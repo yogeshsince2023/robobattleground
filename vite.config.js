@@ -1,9 +1,40 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import sitemap from 'vite-plugin-sitemap'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    sitemap({
+      hostname: 'https://therobobattleground.in',
+      dynamicRoutes: [
+        '/',
+        '/arena',
+        '/machining', 
+        '/internships',
+        '/verify',
+        '/projects',
+        '/about',
+        '/contact',
+      ],
+      exclude: [
+        '/admin',
+        '/admin/*',
+        '/admin/login',
+        '/admin/dashboard',
+        '/admin/certificates',
+        '/admin/gallery',
+        '/admin/enquiries',
+        '/admin/applications',
+        '/admin/messages',
+        '/admin/machining',
+        '/admin/projects',
+        '/admin/clients',
+      ],
+      generateRobotsTxt: false
+    })
+  ],
   build: {
     rollupOptions: {
       output: {

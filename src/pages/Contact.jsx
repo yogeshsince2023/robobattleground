@@ -11,6 +11,7 @@ import {
 import PageWrapper from "../components/PageWrapper.jsx";
 import useDocumentMetadata from "../hooks/useDocumentMetadata.js";
 import { submitContactMessage } from "../lib/db.js";
+import { checkRateLimit } from "../lib/rateLimit.js";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,6 +22,8 @@ export default function Contact() {
   });
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +33,20 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
+
+    if (honeypot) {
+      setLoading(false);
+      setSuccess(true);
+      return; // silently discard
+    }
+
+    const { allowed, message } = checkRateLimit("contact");
+    if (!allowed) {
+      setLoading(false);
+      setError(message);
+      return;
+    }
     
     try {
       const { error: submitErr } = await submitContactMessage(formData);
@@ -42,13 +59,17 @@ export default function Contact() {
         subject: "",
         message: ""
       });
+      setHoneypot("");
     } catch (err) {
       setLoading(false);
       alert("Message transmission failed. Please try again.");
     }
   };
 
-  useDocumentMetadata("Contact — The Robo Battle Ground", "Reach our command war room directly. Query our team for arena availability, corporate event sponsorships, or credential logs.");
+  useDocumentMetadata({
+    title: "Contact — The Robo Battle Ground",
+    description: "Get in touch with The Robo Battle Ground. Arena bookings, machining quotes, internship enquiries, and general questions.",
+  });
 
   return (
     <PageWrapper>
@@ -147,6 +168,28 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="border border-red-500/30 bg-red-500/5 p-4 text-red-500 text-sm uppercase font-semibold text-center tracking-wider">
+                      {error}
+                    </div>
+                  )}
+
+                  <input
+                    type="text"
+                    name="website_url"
+                    value={honeypot}
+                    onChange={e => setHoneypot(e.target.value)}
+                    style={{ 
+                      position: "absolute", 
+                      left: "-9999px",
+                      opacity: 0,
+                      height: 0,
+                      width: 0
+                    }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                   <div className="flex flex-col gap-2">
                     <label htmlFor="contact-name" className="text-xs uppercase text-ash">Name</label>
                     <input

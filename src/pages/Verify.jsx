@@ -7,6 +7,11 @@ import PageWrapper from "../components/PageWrapper.jsx";
 import { getCertificate } from "../lib/db.js";
 
 export default function Verify() {
+  useDocumentMetadata({
+    title: "Certificate Verification — The Robo Battle Ground",
+    description: "Verify your TRBG internship certificate online. Enter your certificate number to instantly confirm authenticity.",
+  });
+
   const [searchParams] = useSearchParams();
   const certParam = searchParams.get("cert") || "";
 

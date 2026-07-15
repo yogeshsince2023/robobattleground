@@ -40,15 +40,15 @@ function LogoCard({ client }) {
         client.website_url ? (
           <a 
             href={client.website_url} 
+            target="_blank"
+            rel="noopener noreferrer"
             title={client.name}
             className="flex items-center justify-center w-full h-full cursor-pointer"
           >
             {imgEl}
           </a>
         ) : (
-          <div className="flex items-center justify-center w-full h-full">
-            {imgEl}
-          </div>
+          imgEl
         )
       ) : (
         <span className="text-[#888] font-body text-sm font-semibold tracking-wider uppercase">
@@ -84,8 +84,29 @@ export default function ClientsStrip() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const getMappedWebsiteUrl = (c) => {
+      if (c.website_url && c.website_url !== "#" && c.website_url.trim() !== "") {
+        return c.website_url;
+      }
+      const nameUpper = c.name.toUpperCase();
+      if (nameUpper.includes("SRMCEM") || nameUpper.includes("SRCEM")) return "https://www.srmcem.ac.in";
+      if (nameUpper.includes("MNIT")) return "https://www.mnit.ac.in";
+      if (nameUpper.includes("IIT DELHI") || nameUpper.includes("IITD")) return "https://home.iitd.ac.in";
+      if (nameUpper.includes("MANIPAL")) return "https://manipal.edu";
+      if (nameUpper.includes("NIRMA")) return "https://nirmauni.ac.in";
+      if (nameUpper.includes("BITS") || nameUpper.includes("PILANI")) return "https://www.bits-pilani.ac.in";
+      if (nameUpper.includes("HAMIRPUR") || nameUpper.includes("NITH")) return "https://nith.ac.in";
+      return null;
+    };
+
     getClients().then(({ data }) => {
-      if (data) setClients(data);
+      if (data) {
+        const enriched = data.map((c) => ({
+          ...c,
+          website_url: getMappedWebsiteUrl(c) || c.website_url
+        }));
+        setClients(enriched);
+      }
       setLoading(false);
     });
   }, []);

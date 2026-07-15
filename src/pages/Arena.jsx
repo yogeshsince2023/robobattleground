@@ -16,6 +16,7 @@ import useDocumentMetadata from "../hooks/useDocumentMetadata.js";
 import { images } from "../assets/images/index.js";
 import ArenaImage from "../components/ArenaImage.jsx";
 import { submitArenaEnquiry } from "../lib/db.js";
+import { checkRateLimit } from "../lib/rateLimit.js";
 
 const rulesData = [
   { title: "1. No projectile weapons above 10 joules energy", body: "All active tethered or untethered projectiles must undergo kinematic safety review. Air pressure canisters and spring systems must fit within structural energy specifications." },
@@ -27,7 +28,6 @@ const rulesData = [
 ];
 
 export default function Arena() {
-  // Accordion state
   const [openRuleIndex, setOpenRuleIndex] = useState(null);
 
   // Form states
@@ -43,6 +43,7 @@ export default function Arena() {
   });
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const formSectionRef = useRef(null);
 
@@ -71,10 +72,20 @@ export default function Arena() {
     if (!formData.botDesc.trim()) newErrors.botDesc = "Bot description is required.";
     if (!formData.referral) newErrors.referral = "Please select an answer.";
 
+    if (honeypot) {
+      setSuccess(true); // fake success
+      return; // silently discard
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
       setErrors({});
+      const { allowed, message } = checkRateLimit("arena");
+      if (!allowed) {
+        setErrors({ submit: message });
+        return;
+      }
       try {
         const insertData = {
           full_name: formData.fullName,
@@ -107,13 +118,18 @@ export default function Arena() {
       referral: ""
     });
     setSuccess(false);
+    setHoneypot("");
   };
 
-  const scrollFormToView = () => {
-    formSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const scrollToForm = () => {
+    document.getElementById("booking-form")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  useDocumentMetadata("Arena & Services — The Robo Battle Ground", "Explore details for India's premier combat robotics cages. Register heavy weights, check active pit hazards, and submit reservation specs.");
+  useDocumentMetadata({
+    title: "Arena & Services — The Robo Battle Ground",
+    description: "Book India's best combat robotics arena. Three zones: full combat enclosure, sumo ring, and autonomous track. Based in Jaipur, Rajasthan.",
+  });
 
   return (
     <PageWrapper>
@@ -182,6 +198,7 @@ export default function Arena() {
                   desc: "Full enclosure. Polycarbonate walls. 3m x 3m battle floor. Max bot weight: 60kg.",
                   status: "AVAILABLE",
                   photo: images.arena.zoneA,
+                  alt: "Full enclosure combat arena",
                   specs: [
                     { k: "Max Weight", v: "60kg" },
                     { k: "Floor", v: "Steel Plate" },
@@ -195,7 +212,8 @@ export default function Arena() {
                   name: "SUMO RING",
                   desc: "Circular fight platform. Wood composites. High-friction mat surface. Weight classes: 3kg and 10kg.",
                   status: "AVAILABLE",
-                  photo: images.arena.zoneB,
+                  photo: "https://images.unsplash.com/photo-1561144257-e32e8506e2b6?w=800&q=80&fit=crop",
+                  alt: "Sumo wrestling robot arena ring", // TODO: Replace with real TRBG Zone B photo
                   specs: [
                     { k: "Classes", v: "3kg & 10kg" },
                     { k: "Platform", v: "Circular 1.2m dia" },
@@ -210,7 +228,8 @@ export default function Arena() {
                   name: "AUTONOMOUS TRACK",
                   desc: "Micromouse maze modules, high-contrast line follower loops, and white-vinyl tracks.",
                   status: "AVAILABLE",
-                  photo: images.arena.zoneC,
+                  photo: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&fit=crop",
+                  alt: "Autonomous robot line following track", // TODO: Replace with real TRBG Zone C photo
                   specs: [
                     { k: "Formats", v: "Line/Maze/Micromouse" },
                     { k: "Track Length", v: "8m loop" },
@@ -228,9 +247,12 @@ export default function Arena() {
                   <div>
                     <ArenaImage
                       src={card.photo}
-                      alt={card.name}
+                      alt={card.alt}
                       className="w-full h-[200px]"
                       overlay={true}
+                      width={800}
+                      height={400}
+                      loading="lazy"
                     />
 
                     <div className="p-8 pb-0">
@@ -261,7 +283,7 @@ export default function Arena() {
 
                   <div className="px-8 pb-8">
                     <button 
-                      onClick={scrollFormToView}
+                      onClick={scrollToForm}
                       className="w-full py-4 border border-plate group-hover:border-fire text-text-primary font-display text-lg uppercase tracking-wider transition-colors inline-flex justify-center items-center gap-2 rounded-none"
                     >
                       ENQUIRE TO BOOK →
@@ -384,7 +406,7 @@ export default function Arena() {
         </section>
 
         {/* SECTION 4 — BOOKING ENQUIRY FORM */}
-        <section ref={formSectionRef} className="bg-[#0D0D0D] py-24 px-4 relative">
+        <section id="booking-form" ref={formSectionRef} className="bg-[#0D0D0D] py-24 px-4 relative">
           <div className="max-w-4xl mx-auto">
             
             <AnimatePresence mode="wait">
@@ -403,6 +425,30 @@ export default function Arena() {
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6 bg-steel border border-plate p-8 md:p-12 rounded-none">
+                    
+                    {/* Rate limiter and Honeypot */}
+                    {errors.submit && (
+                      <div className="border border-red-500/30 bg-red-500/5 p-4 text-red-500 text-sm uppercase font-semibold text-center tracking-wider">
+                        {errors.submit}
+                      </div>
+                    )}
+
+                    <input
+                      type="text"
+                      name="website_url"
+                      value={honeypot}
+                      onChange={e => setHoneypot(e.target.value)}
+                      style={{ 
+                        position: "absolute", 
+                        left: "-9999px",
+                        opacity: 0,
+                        height: 0,
+                        width: 0
+                      }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                    />
                     
                     {/* Form splits 1 col mobile, 2 col md breakpoint */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -498,11 +544,23 @@ export default function Arena() {
                           id="arena-preferredDate"
                           type="date"
                           name="preferredDate"
+                          min={new Date().toISOString().split("T")[0]}
                           value={formData.preferredDate}
                           onChange={handleChange}
-                          className={`rounded-none bg-[#080808] border p-4 text-text-primary outline-none focus:border-fire ${
-                            errors.preferredDate ? "border-red-500" : "border-plate"
-                          }`}
+                          style={{
+                            width: "100%",
+                            background: "#080808",
+                            border: `1px solid ${errors.preferredDate ? "#EF4444" : "#1A1A1A"}`,
+                            padding: "16px",
+                            color: "#F5F5F5",
+                            fontSize: "16px",
+                            fontFamily: "Inter, sans-serif",
+                            borderRadius: 0,
+                            outline: "none",
+                            colorScheme: "dark",
+                          }}
+                          onFocus={e => e.target.style.borderColor = "#FF4500"}
+                          onBlur={e => e.target.style.borderColor = errors.preferredDate ? "#EF4444" : "#1A1A1A"}
                         />
                         {errors.preferredDate && <span className="text-red-500 text-xs font-semibold uppercase">{errors.preferredDate}</span>}
                       </div>

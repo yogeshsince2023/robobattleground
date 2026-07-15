@@ -17,6 +17,7 @@ import {
 import PageWrapper from "../components/PageWrapper.jsx";
 import useDocumentMetadata from "../hooks/useDocumentMetadata.js";
 import { submitMachiningEnquiry } from "../lib/db.js";
+import { checkRateLimit } from "../lib/rateLimit.js";
 
 /* ───────── static data ───────── */
 
@@ -77,10 +78,10 @@ const urgencyOptions = ["No Rush", "Within 1 Week", "Within 3 Days", "Urgent"];
 /* ───────── component ───────── */
 
 export default function Machining() {
-  useDocumentMetadata(
-    "Machining & Fabrication — The Robo Battle Ground",
-    "CNC machining, 3D printing, laser cutting, PCB manufacturing and welding services for combat robot builders in Jaipur."
-  );
+  useDocumentMetadata({
+    title: "Machining & Fabrication — The Robo Battle Ground",
+    description: "CNC machining, 3D printing, laser cutting, PCB manufacturing and welding for combat robot builders in Jaipur. Request a quote today.",
+  });
 
   const formRef = useRef(null);
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -94,6 +95,7 @@ export default function Machining() {
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -119,7 +121,18 @@ export default function Machining() {
     if (formData.services.length === 0) errs.services = "Select at least one service.";
     if (!formData.description.trim()) errs.description = "Project description is required.";
 
+    if (honeypot) {
+      setSuccess(true); // fake success
+      return; // silently discard
+    }
+
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+
+    const { allowed, message } = checkRateLimit("machining");
+    if (!allowed) {
+      setErrors({ submit: message });
+      return;
+    }
 
     try {
       const { error } = await submitMachiningEnquiry(formData);
@@ -135,6 +148,7 @@ export default function Machining() {
     setFormData({ full_name: "", email: "", phone: "", team_name: "", services: [], material: "", weight_class: "", description: "", urgency: "" });
     setErrors({});
     setSuccess(false);
+    setHoneypot("");
   };
 
   /* ── helpers ── */
@@ -154,27 +168,52 @@ export default function Machining() {
           {/* vignette */}
           <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 100%)" }} />
 
+          {/* Guaranteed dark overlay */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%)',
+            zIndex: 1
+          }} />
+
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.1 }}
-            className="max-w-4xl mx-auto text-center z-10 px-4 flex flex-col items-center"
+            className="max-w-4xl mx-auto text-center px-4 flex flex-col items-center"
+            style={{ position: 'relative', zIndex: 2 }}
           >
             <motion.span
               initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0, duration: 0.5 }}
               className="text-spark font-body text-[12px] font-semibold uppercase tracking-[0.2em] mb-6"
+              style={{ position: 'relative', zIndex: 2 }}
             >
               FABRICATION SERVICES
             </motion.span>
 
-            <h1 className="font-display uppercase font-black leading-none mb-6">
-              <motion.span initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1, duration: 0.5 }} className="block text-[#F5F5F5] text-[clamp(40px,8vw,96px)]">
+            <h1 
+              className="font-display uppercase font-black leading-none mb-6"
+              style={{ position: 'relative', zIndex: 2 }}
+            >
+              <motion.span 
+                initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1, duration: 0.5 }} 
+                className="block text-[clamp(40px,8vw,96px)]"
+                style={{ color: '#FFFFFF', textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
+              >
                 MACHINING &
               </motion.span>
-              <motion.span initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.5 }} className="block text-fire text-[clamp(40px,8vw,96px)]">
+              <motion.span 
+                initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.5 }} 
+                className="block text-fire text-[clamp(40px,8vw,96px)]"
+                style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
+              >
                 FABRICATION.
               </motion.span>
             </h1>
 
-            <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="text-ash text-[18px] max-w-2xl mx-auto leading-relaxed mb-10">
+            <motion.p 
+              initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} 
+              className="text-ash text-[18px] max-w-2xl mx-auto leading-relaxed mb-10"
+              style={{ position: 'relative', zIndex: 2 }}
+            >
               Professional CNC machining, 3D printing, laser cutting, welding, and electronics fabrication. Bring your CAD designs or concepts, and we'll bring them to life.
             </motion.p>
 
@@ -297,6 +336,29 @@ export default function Machining() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                {/* Rate limiter and Honeypot */}
+                {errors.submit && (
+                  <div className="border border-red-500/30 bg-red-500/5 p-4 text-red-500 text-sm uppercase font-semibold text-center tracking-wider">
+                    {errors.submit}
+                  </div>
+                )}
+
+                <input
+                  type="text"
+                  name="website_url"
+                  value={honeypot}
+                  onChange={e => setHoneypot(e.target.value)}
+                  style={{ 
+                    position: "absolute", 
+                    left: "-9999px",
+                    opacity: 0,
+                    height: 0,
+                    width: 0
+                  }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Full Name */}
                   <div>
