@@ -71,3 +71,10 @@ create policy "Allow public read published" on projects
 drop policy if exists "Allow admin access" on projects;
 create policy "Allow admin access" on projects
   for all to authenticated using (true) with check (true);
+
+-- FINANCE RECORDS POLICIES
+alter table finance_records enable row level security;
+
+drop policy if exists "Allow admin access" on finance_records;
+create policy "Allow admin access" on finance_records
+  for all to authenticated using (true) with check (true);
