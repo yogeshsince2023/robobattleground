@@ -184,9 +184,7 @@ export default function Home() {
               transition={{ delay: 0.4, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="text-[#CCCCCC] font-body text-[18px] max-w-xl mx-auto mb-10 leading-relaxed font-light"
             >
-              Where Machines Go to War.
-              <br />
-              Book your arena slot or intern with us.
+              Where Machines Go to War. Book your arena slot or intern with us.
             </motion.p>
 
             {/* CTA Row */}
