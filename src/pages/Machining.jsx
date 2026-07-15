@@ -167,15 +167,15 @@ export default function Machining() {
 
             <h1 className="font-display uppercase font-black leading-none mb-6">
               <motion.span initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1, duration: 0.5 }} className="block text-[#F5F5F5] text-[clamp(40px,8vw,96px)]">
-                BUILD YOUR
+                MACHINING &
               </motion.span>
               <motion.span initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.5 }} className="block text-fire text-[clamp(40px,8vw,96px)]">
-                BATTLE BOT.
+                FABRICATION.
               </motion.span>
             </h1>
 
-            <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="text-ash text-[18px] max-w-xl mx-auto leading-relaxed mb-10">
-              Professional machining and fabrication services for combat robot builders. Bring your designs. We'll make them real.
+            <motion.p initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="text-ash text-[18px] max-w-2xl mx-auto leading-relaxed mb-10">
+              Professional CNC machining, 3D printing, laser cutting, welding, and electronics fabrication. Bring your CAD designs or concepts, and we'll bring them to life.
             </motion.p>
 
             <motion.button
