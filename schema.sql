@@ -125,6 +125,7 @@ create table if not exists clients (
   id uuid default gen_random_uuid() primary key,
   name text not null,
   logo_url text not null,
+  highlight_image_url text,
   category text default 'college',
   website_url text,
   is_visible boolean default true,

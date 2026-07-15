@@ -11,7 +11,7 @@ import {
 } from "@tabler/icons-react";
 import useDocumentMetadata from "../../hooks/useDocumentMetadata.js";
 
-const emptyForm = { name: "", logo_url: "", category: "college", website_url: "", sort_order: 0 };
+const emptyForm = { name: "", logo_url: "", highlight_image_url: "", category: "college", website_url: "", sort_order: 0 };
 
 export default function ClientsAdmin() {
   useDocumentMetadata("Manage Clients — TRBG", "Add and manage trusted-by client logos.");
@@ -57,6 +57,7 @@ export default function ClientsAdmin() {
         ...formData,
         name: formData.name.trim(),
         logo_url: formData.logo_url.trim(),
+        highlight_image_url: formData.highlight_image_url.trim() || null,
         website_url: formData.website_url.trim() || null,
         is_visible: true
       });
@@ -152,18 +153,30 @@ export default function ClientsAdmin() {
               <input name="website_url" value={formData.website_url} onChange={handleChange} className={inputCls} placeholder="Optional" />
             </div>
             <div>
+              <label className="text-[11px] uppercase tracking-widest text-ash/70 block mb-1">Highlight Image URL</label>
+              <input name="highlight_image_url" value={formData.highlight_image_url} onChange={handleChange} className={inputCls} placeholder="Paste Cloudinary JPG URL for highlight" />
+            </div>
+            <div>
               <label className="text-[11px] uppercase tracking-widest text-ash/70 block mb-1">Sort Order</label>
               <input name="sort_order" type="number" value={formData.sort_order} onChange={handleChange} className={inputCls} />
             </div>
           </div>
 
-          {/* Logo preview */}
-          {formData.logo_url && (
-            <div className="flex items-center gap-4 p-4 bg-[#080808] border border-[#1A1A1A]">
-              <span className="text-[11px] uppercase tracking-widest text-ash/70">Preview:</span>
-              <img src={formData.logo_url} alt="preview" className="h-10 w-auto object-contain" onError={(e) => { e.target.style.display = 'none'; }} />
-            </div>
-          )}
+          {/* Logo & Highlight Previews */}
+          <div className="flex flex-wrap gap-4">
+            {formData.logo_url && (
+              <div className="flex flex-col gap-1 p-4 bg-[#080808] border border-[#1A1A1A] flex-1 min-w-[200px]">
+                <span className="text-[10px] uppercase tracking-widest text-ash/70 block mb-2">Logo Preview</span>
+                <img src={formData.logo_url} alt="logo preview" className="h-10 w-auto object-contain self-start" onError={(e) => { e.target.style.display = 'none'; }} />
+              </div>
+            )}
+            {formData.highlight_image_url && (
+              <div className="flex flex-col gap-1 p-4 bg-[#080808] border border-[#1A1A1A] flex-1 min-w-[200px]">
+                <span className="text-[10px] uppercase tracking-widest text-ash/70 block mb-2">Highlight Image Preview</span>
+                <img src={formData.highlight_image_url} alt="highlight preview" className="h-20 w-auto object-contain self-start" onError={(e) => { e.target.style.display = 'none'; }} />
+              </div>
+            )}
+          </div>
 
           <button type="submit" disabled={submitting} className="bg-fire hover:bg-[#cc3700] text-[#080808] font-display text-sm tracking-widest uppercase px-8 py-3 transition-colors disabled:opacity-50 rounded-none">
             {submitting ? "SAVING..." : "SAVE CLIENT"}
@@ -201,6 +214,12 @@ export default function ClientsAdmin() {
                       <span>{c.category}</span>
                       <span>•</span>
                       <span>Order: {c.sort_order}</span>
+                      {c.highlight_image_url && (
+                        <>
+                          <span>•</span>
+                          <span className="text-spark font-semibold">HAS PHOTO</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
