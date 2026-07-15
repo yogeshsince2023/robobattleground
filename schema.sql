@@ -119,3 +119,15 @@ create table if not exists finance_records (
   record_date date default current_date,
   created_at timestamp default now()
 );
+
+-- CLIENTS TABLE
+create table if not exists clients (
+  id uuid default gen_random_uuid() primary key,
+  name text not null,
+  logo_url text not null,
+  category text default 'college',
+  website_url text,
+  is_visible boolean default true,
+  sort_order integer default 0,
+  created_at timestamp default now()
+);

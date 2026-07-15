@@ -12,7 +12,8 @@ import {
   IconLogout,
   IconTool,
   IconPresentation,
-  IconCash
+  IconCash,
+  IconBuilding
 } from "@tabler/icons-react";
 
 export default function AdminLayout() {
@@ -33,7 +34,8 @@ export default function AdminLayout() {
     { label: "Projects", path: "/admin/projects", icon: IconPresentation },
     { label: "Applications", path: "/admin/applications", icon: IconUsers },
     { label: "Messages", path: "/admin/messages", icon: IconMail },
-    { label: "Finance", path: "/admin/finance", icon: IconCash }
+    { label: "Finance", path: "/admin/finance", icon: IconCash },
+    { label: "Clients", path: "/admin/clients", icon: IconBuilding }
   ];
 
 

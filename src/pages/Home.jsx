@@ -13,6 +13,7 @@ import PageWrapper from "../components/PageWrapper.jsx";
 import useDocumentMetadata from "../hooks/useDocumentMetadata.js";
 import { images } from "../assets/images/index.js";
 import ArenaImage from "../components/ArenaImage.jsx";
+import ClientsStrip from "../components/ClientsStrip.jsx";
 import { getFeaturedProjects } from "../lib/db.js";
 
 // Custom hook to trigger a count-up transition
@@ -272,6 +273,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* CLIENTS STRIP */}
+        <ClientsStrip />
 
         {/* SECTION 2 — SERVICES (angled plate) */}
         <section 

@@ -47,3 +47,17 @@ body {
 .animate-trbg-shake {
   animation: trbg-shake 0.3s ease-in-out;
 }
+
+/* Clients Marquee */
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+@keyframes scroll-right {
+  0%   { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-row { animation: none !important; }
+}

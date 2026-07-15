@@ -78,3 +78,14 @@ alter table finance_records enable row level security;
 drop policy if exists "Allow admin access" on finance_records;
 create policy "Allow admin access" on finance_records
   for all to authenticated using (true) with check (true);
+
+-- CLIENTS POLICIES
+alter table clients enable row level security;
+
+drop policy if exists "public_read_clients" on clients;
+create policy "public_read_clients" on clients
+  for select using (is_visible = true);
+
+drop policy if exists "admin_all_clients" on clients;
+create policy "admin_all_clients" on clients
+  for all to authenticated using (true) with check (true);

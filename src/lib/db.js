@@ -331,3 +331,39 @@ export const deleteFinanceRecord = async (id) => {
     .eq('id', id);
   return { data, error };
 };
+
+// --- CLIENTS ---
+
+export const getClients = async () => {
+  const { data, error } = await supabase
+    .from('clients')
+    .select('*')
+    .eq('is_visible', true)
+    .order('sort_order', { ascending: true });
+  return { data, error };
+};
+
+export const getAllClients = async () => {
+  const { data, error } = await supabase
+    .from('clients')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  return { data, error };
+};
+
+export const upsertClient = async (client) => {
+  const { data, error } = await supabase
+    .from('clients')
+    .upsert(client, { onConflict: 'id' })
+    .select()
+    .single();
+  return { data, error };
+};
+
+export const deleteClient = async (id) => {
+  const { data, error } = await supabase
+    .from('clients')
+    .delete()
+    .eq('id', id);
+  return { data, error };
+};
