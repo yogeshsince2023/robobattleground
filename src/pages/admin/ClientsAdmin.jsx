@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllClients, upsertClient, deleteClient } from "../../lib/db.js";
+import { getClients, upsertClient, deleteClient } from "../../lib/db.js";
 import {
   IconLoader,
   IconPlus,
@@ -28,7 +28,7 @@ export default function ClientsAdmin() {
   const load = async () => {
     setLoading(true);
     try {
-      const { data, error } = await getAllClients();
+      const { data, error } = await getClients(true);
       if (error) throw error;
       setClients(data || []);
     } catch {

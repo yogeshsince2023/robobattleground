@@ -12,33 +12,15 @@ export const getCertificate = async (certId) => {
   return { data, error };
 };
 
-export const submitArenaEnquiry = async (formData) => {
-  const { data, error } = await supabase
-    .from('arena_enquiries')
-    .insert([formData]);
+const insertRow = async (table, row) => {
+  const { data, error } = await supabase.from(table).insert([row]);
   return { data, error };
 };
 
-export const submitInternshipApplication = async (formData) => {
-  const { data, error } = await supabase
-    .from('internship_applications')
-    .insert([formData]);
-  return { data, error };
-};
-
-export const submitContactMessage = async (formData) => {
-  const { data, error } = await supabase
-    .from('contact_messages')
-    .insert([formData]);
-  return { data, error };
-};
-
-export const submitMachiningEnquiry = async (formData) => {
-  const { data, error } = await supabase
-    .from('machining_enquiries')
-    .insert([formData]);
-  return { data, error };
-};
+export const submitArenaEnquiry = (formData) => insertRow('arena_enquiries', formData);
+export const submitInternshipApplication = (formData) => insertRow('internship_applications', formData);
+export const submitContactMessage = (formData) => insertRow('contact_messages', formData);
+export const submitMachiningEnquiry = (formData) => insertRow('machining_enquiries', formData);
 
 export const getGallery = async (category = null) => {
   let query = supabase
@@ -119,31 +101,19 @@ export const getArenaEnquiries = async () => {
   return { data, error };
 };
 
-export const updateArenaEnquiry = async (id, updates) => {
-  const { data, error } = await supabase
-    .from('arena_enquiries')
-    .update(updates)
-    .eq('id', id)
-    .select()
-    .single();
+const updateRow = async (table, id, updates) => {
+  const { data, error } = await supabase.from(table).update(updates).eq('id', id).select().single();
   return { data, error };
 };
+
+export const updateArenaEnquiry = (id, updates) => updateRow('arena_enquiries', id, updates);
+export const updateInternshipApplication = (id, updates) => updateRow('internship_applications', id, updates);
 
 export const getInternshipApplications = async () => {
   const { data, error } = await supabase
     .from('internship_applications')
     .select('*')
     .order('created_at', { ascending: false });
-  return { data, error };
-};
-
-export const updateInternshipApplication = async (id, updates) => {
-  const { data, error } = await supabase
-    .from('internship_applications')
-    .update(updates)
-    .eq('id', id)
-    .select()
-    .single();
   return { data, error };
 };
 
@@ -216,15 +186,7 @@ export const getMachiningEnquiries = async () => {
   return { data, error };
 };
 
-export const updateMachiningEnquiry = async (id, updates) => {
-  const { data, error } = await supabase
-    .from('machining_enquiries')
-    .update(updates)
-    .eq('id', id)
-    .select()
-    .single();
-  return { data, error };
-};
+export const updateMachiningEnquiry = (id, updates) => updateRow('machining_enquiries', id, updates);
 
 // --- PROJECTS ---
 
@@ -334,20 +296,10 @@ export const deleteFinanceRecord = async (id) => {
 
 // --- CLIENTS ---
 
-export const getClients = async () => {
-  const { data, error } = await supabase
-    .from('clients')
-    .select('*')
-    .eq('is_visible', true)
-    .order('sort_order', { ascending: true });
-  return { data, error };
-};
-
-export const getAllClients = async () => {
-  const { data, error } = await supabase
-    .from('clients')
-    .select('*')
-    .order('sort_order', { ascending: true });
+export const getClients = async (all = false) => {
+  let query = supabase.from('clients').select('*').order('sort_order', { ascending: true });
+  if (!all) query = query.eq('is_visible', true);
+  const { data, error } = await query;
   return { data, error };
 };
 

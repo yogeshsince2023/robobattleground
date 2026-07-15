@@ -78,9 +78,16 @@ export default function FinanceAdmin() {
 
   /* summary */
   const summary = useMemo(() => {
-    const income = filtered.filter((r) => r.type === "income").reduce((s, r) => s + Number(r.amount), 0);
-    const expense = filtered.filter((r) => r.type === "expense").reduce((s, r) => s + Number(r.amount), 0);
-    return { income, expense, net: income - expense };
+    return filtered.reduce(
+      (acc, r) => {
+        const val = Number(r.amount);
+        if (r.type === "income") acc.income += val;
+        else acc.expense += val;
+        acc.net = acc.income - acc.expense;
+        return acc;
+      },
+      { income: 0, expense: 0, net: 0 }
+    );
   }, [filtered]);
 
   /* form handlers */
