@@ -5,43 +5,51 @@ import { buildLogoUrl } from "../lib/cloudinary.js";
 function LogoCard({ client }) {
   const [imgFailed, setImgFailed] = useState(false);
 
+  const imgEl = client.logo_url && !imgFailed ? (
+    <img
+      src={buildLogoUrl(client.logo_url)}
+      alt={`${client.name} logo`}
+      loading="lazy"
+      width={260}
+      height={135}
+      className="select-none"
+      style={{
+        height: "auto",
+        maxHeight: "135px",
+        width: "auto",
+        maxWidth: "260px",
+        objectFit: "contain",
+        transition: "opacity 0.3s ease",
+        opacity: 0.9
+      }}
+      onMouseEnter={e => {
+        e.target.style.opacity = "1";
+      }}
+      onMouseLeave={e => {
+        e.target.style.opacity = "0.9";
+      }}
+      onError={() => setImgFailed(true)}
+    />
+  ) : null;
+
   return (
     <div
       className="mx-12 md:mx-18 flex items-center justify-center h-36 md:h-44 min-w-[260px] md:min-w-[340px] shrink-0 cursor-default transition-all duration-300 hover:scale-110 opacity-90 hover:opacity-100"
     >
-      {client.logo_url && !imgFailed ? (
-        <a 
-          href={client.website_url || "#"} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          title={client.name}
-          className="flex items-center justify-center w-full h-full"
-        >
-          <img
-            src={buildLogoUrl(client.logo_url)}
-            alt={`${client.name} logo`}
-            loading="lazy"
-            width={260}
-            height={135}
-            className="select-none"
-            style={{
-              height: "auto",
-              maxHeight: "135px",
-              width: "auto",
-              maxWidth: "260px",
-              objectFit: "contain",
-              transition: "opacity 0.3s ease",
-              opacity: 0.9
-            }}
-            onMouseEnter={e => {
-              e.target.style.opacity = "1";
-            }}
-            onMouseLeave={e => {
-              e.target.style.opacity = "0.9";
-            }}
-            onError={() => setImgFailed(true)}
-          />
-        </a>
+      {imgEl ? (
+        client.website_url ? (
+          <a 
+            href={client.website_url} 
+            title={client.name}
+            className="flex items-center justify-center w-full h-full cursor-pointer"
+          >
+            {imgEl}
+          </a>
+        ) : (
+          <div className="flex items-center justify-center w-full h-full">
+            {imgEl}
+          </div>
+        )
       ) : (
         <span className="text-[#888] font-body text-sm font-semibold tracking-wider uppercase">
           {client.name}
