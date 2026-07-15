@@ -105,3 +105,17 @@ create table if not exists projects (
   created_at timestamp default now(),
   updated_at timestamp default now()
 );
+
+-- FINANCE RECORDS TABLE
+create table if not exists finance_records (
+  id uuid default gen_random_uuid() primary key,
+  type text not null,
+  amount numeric not null,
+  source text not null,
+  category text,
+  description text,
+  payment_mode text,
+  reference_id text,
+  record_date date default current_date,
+  created_at timestamp default now()
+);

@@ -30,6 +30,7 @@ import ApplicationsAdmin from "./pages/admin/ApplicationsAdmin.jsx";
 import MessagesAdmin from "./pages/admin/MessagesAdmin.jsx";
 import MachiningAdmin from "./pages/admin/MachiningAdmin.jsx";
 import ProjectsAdmin from "./pages/admin/ProjectsAdmin.jsx";
+import FinanceAdmin from "./pages/admin/FinanceAdmin.jsx";
 
 export default function App() {
   return (
@@ -81,6 +82,7 @@ export default function App() {
             <Route path="machining" element={<MachiningAdmin />} />
             <Route path="projects" element={<ProjectsAdmin />} />
             <Route path="messages" element={<MessagesAdmin />} />
+            <Route path="finance" element={<FinanceAdmin />} />
           </Route>
 
           {/* Page not found */}

@@ -61,8 +61,9 @@ export const getAdminStats = async () => {
   const msgs = supabase.from('contact_messages').select('*', { count: 'exact', head: true }).eq('status', 'unread');
   const machining = supabase.from('machining_enquiries').select('*', { count: 'exact', head: true }).eq('status', 'new');
   const projects = supabase.from('projects').select('*', { count: 'exact', head: true }).eq('is_published', true);
+  const finance = supabase.from('finance_records').select('*', { count: 'exact', head: true });
   
-  const [certsRes, enquiriesRes, appsRes, msgsRes, machiningRes, projectsRes] = await Promise.all([certs, enquiries, apps, msgs, machining, projects]);
+  const [certsRes, enquiriesRes, appsRes, msgsRes, machiningRes, projectsRes, financeRes] = await Promise.all([certs, enquiries, apps, msgs, machining, projects, finance]);
   return {
     certsCount: certsRes.count || 0,
     enquiriesCount: enquiriesRes.count || 0,
@@ -70,7 +71,8 @@ export const getAdminStats = async () => {
     msgsCount: msgsRes.count || 0,
     machiningCount: machiningRes.count || 0,
     projectsCount: projectsRes.count || 0,
-    error: certsRes.error || enquiriesRes.error || appsRes.error || msgsRes.error || machiningRes.error || projectsRes.error
+    financeCount: financeRes.count || 0,
+    error: certsRes.error || enquiriesRes.error || appsRes.error || msgsRes.error || machiningRes.error || projectsRes.error || financeRes.error
   };
 };
 
@@ -290,5 +292,42 @@ export const toggleProjectStatus = async (id, field, value) => {
     .eq('id', id)
     .select()
     .single();
+  return { data, error };
+};
+
+// --- FINANCE RECORDS ---
+
+export const getFinanceRecords = async () => {
+  const { data, error } = await supabase
+    .from('finance_records')
+    .select('*')
+    .order('record_date', { ascending: false });
+  return { data, error };
+};
+
+export const addFinanceRecord = async (record) => {
+  const { data, error } = await supabase
+    .from('finance_records')
+    .insert([record])
+    .select()
+    .single();
+  return { data, error };
+};
+
+export const updateFinanceRecord = async (id, updates) => {
+  const { data, error } = await supabase
+    .from('finance_records')
+    .update(updates)
+    .eq('id', id)
+    .select()
+    .single();
+  return { data, error };
+};
+
+export const deleteFinanceRecord = async (id) => {
+  const { data, error } = await supabase
+    .from('finance_records')
+    .delete()
+    .eq('id', id);
   return { data, error };
 };
