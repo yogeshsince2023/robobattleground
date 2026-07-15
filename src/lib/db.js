@@ -44,8 +44,11 @@ export const getAdminStats = async () => {
   const machining = supabase.from('machining_enquiries').select('*', { count: 'exact', head: true }).eq('status', 'new');
   const projects = supabase.from('projects').select('*', { count: 'exact', head: true }).eq('is_published', true);
   const finance = supabase.from('finance_records').select('*', { count: 'exact', head: true });
+  const clients = supabase.from('clients').select('*', { count: 'exact', head: true }).eq('is_visible', true);
   
-  const [certsRes, enquiriesRes, appsRes, msgsRes, machiningRes, projectsRes, financeRes] = await Promise.all([certs, enquiries, apps, msgs, machining, projects, finance]);
+  const [certsRes, enquiriesRes, appsRes, msgsRes, machiningRes, projectsRes, financeRes, clientsRes] = await Promise.all([
+    certs, enquiries, apps, msgs, machining, projects, finance, clients
+  ]);
   return {
     certsCount: certsRes.count || 0,
     enquiriesCount: enquiriesRes.count || 0,
@@ -54,7 +57,8 @@ export const getAdminStats = async () => {
     machiningCount: machiningRes.count || 0,
     projectsCount: projectsRes.count || 0,
     financeCount: financeRes.count || 0,
-    error: certsRes.error || enquiriesRes.error || appsRes.error || msgsRes.error || machiningRes.error || projectsRes.error || financeRes.error
+    clientsCount: clientsRes.count || 0,
+    error: certsRes.error || enquiriesRes.error || appsRes.error || msgsRes.error || machiningRes.error || projectsRes.error || financeRes.error || clientsRes.error
   };
 };
 
@@ -318,4 +322,11 @@ export const deleteClient = async (id) => {
     .delete()
     .eq('id', id);
   return { data, error };
+};
+
+export const updateClientOrder = async (updates) => {
+  const promises = updates.map(({ id, sort_order }) =>
+    supabase.from('clients').update({ sort_order }).eq('id', id)
+  );
+  await Promise.all(promises);
 };

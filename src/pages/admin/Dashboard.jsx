@@ -77,7 +77,8 @@ export default function Dashboard() {
     { label: "Published Projects", count: stats.projectsCount, path: "/admin/projects" },
     { label: "New Internship Applications", count: stats.appsCount, path: "/admin/applications", isNew: true },
     { label: "Unread Messages", count: stats.msgsCount, path: "/admin/messages", isNew: true },
-    { label: "Finance Records", count: stats.financeCount, path: "/admin/finance" }
+    { label: "Finance Records", count: stats.financeCount, path: "/admin/finance" },
+    { label: "Active Clients", count: stats.clientsCount, path: "/admin/clients" }
   ];
 
   return (

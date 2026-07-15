@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getClients } from "../lib/db.js";
+import { buildLogoUrl } from "../lib/cloudinary.js";
 
 function LogoCard({ client }) {
   const [imgFailed, setImgFailed] = useState(false);
@@ -9,15 +10,41 @@ function LogoCard({ client }) {
       className="mx-12 md:mx-18 flex items-center justify-center h-32 md:h-40 min-w-[240px] md:min-w-[320px] shrink-0 cursor-default transition-all duration-300 hover:scale-110 opacity-90 hover:opacity-100"
     >
       {client.logo_url && !imgFailed ? (
-        <img
-          src={client.logo_url}
-          alt={client.name}
-          loading="lazy"
-          width={240}
-          height={120}
-          className="h-[90px] md:h-[120px] w-auto object-contain select-none"
-          onError={() => setImgFailed(true)}
-        />
+        <a 
+          href={client.website_url || "#"} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          title={client.name}
+          className="flex items-center justify-center w-full h-full"
+        >
+          <img
+            src={buildLogoUrl(client.logo_url)}
+            alt={`${client.name} logo`}
+            loading="lazy"
+            width={240}
+            height={120}
+            className="select-none"
+            style={{
+              height: "auto",
+              maxHeight: "120px",
+              width: "auto",
+              maxWidth: "240px",
+              objectFit: "contain",
+              filter: "grayscale(100%) brightness(0.6)",
+              transition: "filter 0.3s ease, opacity 0.3s ease",
+              opacity: 0.7
+            }}
+            onMouseEnter={e => {
+              e.target.style.filter = "grayscale(0%) brightness(1)";
+              e.target.style.opacity = "1";
+            }}
+            onMouseLeave={e => {
+              e.target.style.filter = "grayscale(100%) brightness(0.6)";
+              e.target.style.opacity = "0.7";
+            }}
+            onError={() => setImgFailed(true)}
+          />
+        </a>
       ) : (
         <span className="text-[#888] font-body text-sm font-semibold tracking-wider uppercase">
           {client.name}
@@ -97,6 +124,10 @@ export default function ClientsStrip() {
   return (
     <section
       className="bg-[#0A0A0A] border-y border-[#1A1A1A] py-16 overflow-hidden group relative"
+      style={{
+        maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)"
+      }}
       onMouseEnter={(e) => e.currentTarget.querySelectorAll('.marquee-row').forEach(r => r.style.animationPlayState = 'paused')}
       onMouseLeave={(e) => e.currentTarget.querySelectorAll('.marquee-row').forEach(r => r.style.animationPlayState = 'running')}
     >
