@@ -59,11 +59,11 @@ export default function Footer() {
             SERVICES
           </h3>
           <div className="flex flex-col gap-2 font-body text-[13px] text-[#555]">
-            <span className="hover:text-text-primary cursor-pointer transition-colors">RoboWar Arena</span>
-            <span className="hover:text-text-primary cursor-pointer transition-colors">BattleBot Pit</span>
-            <span className="hover:text-text-primary cursor-pointer transition-colors">Autonomous Tracks</span>
-            <span className="hover:text-text-primary cursor-pointer transition-colors">Internship Programs</span>
-            <span className="hover:text-text-primary cursor-pointer transition-colors">Certificate Verification</span>
+            <Link to="/arena" className="hover:text-text-primary transition-colors">RoboWar Arena</Link>
+            <Link to="/arena" className="hover:text-text-primary transition-colors">BattleBot Pit</Link>
+            <Link to="/arena" className="hover:text-text-primary transition-colors">Autonomous Tracks</Link>
+            <Link to="/internships" className="hover:text-text-primary transition-colors">Internship Programs</Link>
+            <Link to="/verify" className="hover:text-text-primary transition-colors">Certificate Verification</Link>
           </div>
         </div>
 
@@ -101,7 +101,6 @@ export default function Footer() {
           </Link>
         </div>
         <span className="font-mono text-[11px] uppercase tracking-wider text-[#6A6A6A] hover:text-[#9A9A9A] transition-colors select-all">Udyam No: UDYAM-RJ-21-0091002</span>
-        <span>Made with ⚡ in India</span>
       </div>
 
     </footer>
